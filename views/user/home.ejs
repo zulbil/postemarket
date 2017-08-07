@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+            <div class="page-content-wrapper" ng-controller="userProfileController">
+                <div class="page-content">
+                    <div class="profile">
+                        <div class="tabbable-line tabbable-full-width">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#overview" data-toggle="tab"> Overview </a>
+                                </li>
+                                <li>
+                                    <a href="#account" data-toggle="tab"> Account </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="overview">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <ul class="list-unstyled profile-nav">
+                                                <li>
+                                                    <img style="height: 250px; width:200px;" ng-src="{{me.profilePicture | fpConvert: {filter:'sharpen'} }}" />  
+                                                    <button class="btn btn-danger" ng-click="upload()">Change</button>
+                                                    <button class="btn btn-success" ng-click="saveChanges()">Save</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                                <div class="col-md-9 profile-info">
+                                                    <div class="panel panel-info">
+                                                      <div class="panel-heading">
+                                                        <h3 class="panel-title"><i class="fa fa-info"></i> Personal Information</h3>
+                                                       </div>
+                                                       <div class="panel-body">
+                                                        <ul class="list-group">
+                                                            <li class="list-group-item"> 
+                                                                Name:     {{me.fullname}}
+                                                            </li>
+                                                            <li class="list-group-item"> 
+                                                                Telephone:     {{me.tel}}
+                                                            </li>
+                                                            <li class="list-group-item"> 
+                                                                City:  {{me.city}}
+                                                            </li>
+                                                            <li class="list-group-item"> 
+                                                                Address: {{me.address}}
+                                                            </li>
+                                                            <li class="list-group-item"> 
+                                                                Join on: {{me.createdAt | date }}
+                                                            </li>
+                                                
+                                                        </ul>
+                                                     </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--tab_1_2-->
+                                <div class="tab-pane" id="account">
+                                    <div class="row profile-account">
+                                        <div class="col-md-3">
+                                            <ul class="ver-inline-menu tabbable margin-bottom-10">
+                                                <li class="active">
+                                                    <a data-toggle="tab" href="#tab_1-1">
+                                                        <i class="fa fa-cog"></i> Personal info </a>
+                                                    <span class="after"> </span>
+                                                </li>
+                                                
+                                                <li>
+                                                    <a data-toggle="tab" href="#tab_3-3">
+                                                        <i class="fa fa-lock"></i> Change Password </a>
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="tab-content">
+                                                <div id="tab_1-1" class="tab-pane active">
+                                                    <form role="form">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Full Name</label>
+                                                            <input type="text" ng-model="me.fullname" class="form-control" /> </div>
+                                                        
+                                                        <div class="form-group">
+                                                            <label class="control-label">Tel</label>
+                                                            <input type="text" ng-model="me.tel" class="form-control" /> </div>
+                                                       <div class="form-group">
+                                                            <label class="control-label">Address</label>
+                                                            <input type="text" ng-model="me.address" class="form-control" /> </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">City</label>
+                                                            <input type="text" ng-model="me.city" class="form-control" /> </div>
+                                                        <div class="margiv-top-10">
+                                                            <a type="submit" class="btn green" ng-click="updatedUserInfo()"> Save Changes </a>
+                                                            <a class="btn default"> Cancel </a>
+                                                        </div>
+                                                        
+                                                    </form>
+                                                </div>
+                                                
+                                                <div id="tab_3-3" class="tab-pane">
+                                                    <form action="#">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Current Password</label>
+                                                            <input type="password" class="form-control" required="required"/> </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">New Password</label>
+                                                            <input type="password" class="form-control" required="required" ng-model="newPassword"/> </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">Re-type New Password</label>
+                                                            <input type="password" class="form-control" required="required" ng-model="newPassword"/> </div>
+                                                        <div class="margin-top-10">
+                                                            <a class="btn green" ng-click="changePassword()"> Change Password </a>
+                                                            <a  class="btn default"> Cancel </a>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <!--end col-md-9-->
+                                    </div>
+                                </div>
+                                <!--end tab-pane-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>

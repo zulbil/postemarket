@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+            <div class="page-content-wrapper" ng-controller="ProductController">
+                <div class="page-content">
+                    <!-- BEGIN PAGE HEADER-->
+                    <!-- BEGIN THEME PANEL -->
+                    <!-- BEGIN PAGE BAR -->
+                    <div class="page-bar">
+                        <ul class="page-breadcrumb">
+                            <li>
+                                <a href="/back/dashboard">Home</a>
+                                <i class="fa fa-circle"></i>
+                            </li>
+                            <li>
+                                <span>eCommerce</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END PAGE BAR -->
+                    <!-- BEGIN PAGE TITLE-->
+                    <div class="page-title"> <h3 class="text-danger">Détail du Bon de Commande</h3> </div>
+                    <div class="portlet light bg-inverse">
+                                            <div class="portlet-title">
+                                                <div class="tools">
+                                                    <a href="" class="collapse"> </a>
+                                                    <a href="#portlet-config" data-toggle="modal" class="config"> </a>
+                                                    <a href="" class="reload"> </a>
+                                                    <a href="" class="remove"> </a>
+                                                </div>
+                                            </div>
+                                            <div class="portlet-body form">
+                                                <!-- BEGIN FORM-->
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-body">
+                                                        <h3 class="form-section">Détail de la commande</h3>
+                                                        <div class="row">
+                                                            <div class="col-md-9">
+                                                                   <table class="table">
+                                                                <thead>
+                                                                    <th>Nom Du produit</th><th>Quantité demandé</th>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr ng-repeat="devis in oneDevis.commande">
+                                                                        <td>{{devis.name}}</td>
+                                                                        <td>{{devis.quantity}}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            </div>
+                                                        </div>
+                                                        <!--/row-->
+                                                    
+                                                        <h3 class="form-section">Information de l'emetteur</h3>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3">Nom</label>
+                                                                    <div class="col-md-9">
+                                                                        <p class="form-control-static"> {{oneDevis.from}} </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3">Date d'envoi</label>
+                                                                    <div class="col-md-9">
+                                                                        <p class="form-control-static"> {{oneDevis.createdAt | date: 'dd/MM/yyyy @ h:mma'}} </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--/span-->
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <!-- END FORM-->
+                                            </div>
+                                        </div>
+                                    </div>
+                </div>
+                
+                <!-- END CONTENT BODY -->
+            </div>

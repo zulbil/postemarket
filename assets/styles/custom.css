@@ -1,0 +1,37 @@
+.cart {
+
+	height: 400px;
+}
+
+.form-label {
+	font-size: small;
+	font-weight: bold; 
+}
+
+.login-from {
+	padding-top: 120px;
+}
+
+.image {
+	height: 242px; width: 242px; 
+}
+
+.footer-text {
+	font-size: small; 
+}
+
+.thumbnail img {
+	height: 200px; width: 200px; 
+}
+
+.avatar {
+	height: 10px; width: 10px; 
+}
+
+.name {
+	font-size: smaller;
+}
+
+.ng-invalid {
+	color: red; 
+}

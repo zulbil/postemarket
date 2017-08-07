@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" ng-app="postecommerce">
+
+  <head>
+    <title>Signup</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--meta info-->
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="icon" type="image/ico" href="/images/fav.ico">
+    <!--stylesheet include-->
+    <link href="/assets/global/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" media="all" href="/css/jquery.custom-scrollbar.css">
+    <link rel="stylesheet" type="text/css" media="all" href="/css/style.css">
+    <!--font include-->
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/bower_components/AngularJS-Toaster/toaster.min.css">
+  </head>
+  <body ng-controller="customerController">
+    <toaster-container toaster-options="{'time-out': 6000}"></toaster-container>
+    <!--boxed layout-->
+    <div class="wide_layout">
+      <!--content-->
+        <div class="container">
+          <!--banners--><br>
+          <div class="row">
+            <div class="text-center">
+               <img src="/images/logoposte.png" alt=""><br><br>
+            </div>
+             
+          </div>
+          <div class="row clearfix">
+
+            <div class="col-md-offset-4 col-md-4">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <h2 class="text-center">Nouveau Compte</h2><br><br>
+                  <form>
+                    <ul>
+                      <li class="m_bottom_15">
+                        <label for="username" class="m_bottom_5 d_inline_b">Votre Nom complet</label><br>
+                        <input type="text" name="" id="username" class="r_corners full_width" ng-model="user.fullname">
+                      </li>
+                      <li class="m_bottom_15">
+                        <label for="username" class="m_bottom_5 d_inline_b">Votre Nom utilisateur</label><br>
+                        <input type="text" name="" id="username" class="r_corners full_width" ng-model="user.username">
+                      </li>
+                      <li class="m_bottom_15">
+                        <label for="username" class="m_bottom_5 d_inline_b">S'enregistrer comme</label><br>
+                        <select class="m_bottom_5 d_inline_b" ng-model="user.role">
+                          <option value="customer">Client</option>
+                          <option value="supplier">Fournisseur</option>
+                        </select>
+                      </li>
+                      <li class="m_bottom_15">
+                        <label for="username" class="m_bottom_5 d_inline_b">Votre adresse Email</label><br>
+                        <input type="text" name="" id="username" class="r_corners full_width" ng-model="user.email">
+                      </li>
+                      <li class="m_bottom_25">
+                        <label for="password" class="m_bottom_5 d_inline_b">Mot de Passe</label><br>
+                        <input type="password" name="" id="password" class="r_corners full_width" ng-model="user.password">
+                      </li>
+                      <li class="clearfix m_bottom_30">
+                        <button class="button_type_4 tr_all_hover r_corners f_left bg_scheme_color color_light f_mxs_none m_mxs_bottom_15" ng-click="signup()">S'enregistrer</button>
+                      </li>
+                    </ul>
+                  </form>
+                </div>
+                <div class="panel-footer">
+                  <h5 class="color_dark d_inline_middle d_mxs_none m_mxs_bottom_15">Déjà un compte?</h5>
+          <a href="/app/login" role="button" class="btn btn-default" style="margin-left: 30px;">Connectez-vous</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <br><br>
+        <hr class="container">
+        <footer class="footer">
+        <br>
+          <div class="container">
+             <p class="text-center">&copy; 2017 <span class="bold">Joel Alexandre Khang Zulbal</span>. Tous droits reservés.</p>
+          </div>
+         <br><br>
+        </footer>
+      </div>
+        <script type="text/javascript" src="/js/dependencies/sails.io.js"></script>
+        <script type="text/javascript" src="/js/dependencies/angular.min.js"></script>
+        <script type="text/javascript">
+            console.log(angular); 
+        </script>
+        <script type="text/javascript" src="/js/angular/angular-animate.min.js"></script>
+         <script type="text/javascript" src="/js/angular-ui/dist/ui-bootstrap-tpls.js"></script>
+         <script type="text/javascript" src="/js/libs/dirPagination.js"></script>
+        <script type="text/javascript" src="/bower_components/AngularJS-Toaster/toaster.min.js"></script>
+        <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+        <script type="text/javascript" src="/bower_components/stripe-angular/stripe-angular.js"></script>
+        <script type="text/javascript" src="/bower_components/angular-payments/lib/angular-payments.js"></script>
+        <script type="text/javascript" src="/js/app-front.js"></script>
+        <script type="text/javascript" src="/js/libs/SweetAlert.js"></script>
+        <script type="text/javascript" src="/js/libs/sweet-alert.min.js"></script>
+  </body>
+</html>

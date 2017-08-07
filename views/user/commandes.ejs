@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+            <div class="page-content-wrapper" ng-controller="ProductController">
+                <div class="page-content">
+                    <!-- BEGIN PAGE HEADER-->
+                    <!-- BEGIN THEME PANEL -->
+                    <!-- BEGIN PAGE BAR -->
+                    <div class="page-bar">
+                        <ul class="page-breadcrumb">
+                            <li>
+                                <a href="/dashboard">Home</a>
+                                <i class="fa fa-circle"></i>
+                            </li>
+                            <li>
+                                <span>eCommerce</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END PAGE BAR -->
+                    <!-- BEGIN PAGE TITLE-->
+                    <div class="page-title"> <h3 class="text-danger">Gestion de Commandes</h3> </div>
+                    <!-- END PAGE TITLE-->
+                    <!-- END PAGE HEADER-->
+                    <!-- -->
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                 <i class="icon-graph"></i>
+                                 <span class="title text-bold">Bon de Commande Reçu</span>
+                            </div>
+                        </div>
+                        <form class="form-inline text-right">
+                                     <div class="form-group">
+                                        <div class="input-icon input-icon-md right">
+                                            <i class="fa fa-search font-green"></i>
+                                           <input type="text" ng-model="search" class="form-control input-md" placeholder="Search...">
+                                        </div>
+                                     </div>
+                                  </form>
+                        <div class="portlet-body">
+                            <div class="table-scrollable">
+                                  
+                                <table class="table table-bordered table-stripped table-hover">
+                                    <thead class="text-bold">
+                                        <th ng-click="sort('name')">Envoyé Par
+                                            <i class="fa fa-sort" ng-show="sortKey=='name'" ng-class="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse}" aria-hidden="true"></i>
+                                        </th>
+                                        <th ng-click="sort('category')">Commande
+                                            <i class="fa fa-sort" ng-show="sortKey=='category'" ng-class="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse}" aria-hidden="true"></i>
+                                        </th>
+                                        <th ng-click="sort('date')">Date d'envoi
+                                            <i class="fa fa-sort" ng-show="sortKey=='date'" ng-class="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse}" aria-hidden="true"></i>
+                                        </th>
+                                        <th></th>
+                                    </thead>
+                                    <tbody>
+                                        <tr dir-paginate="oneDevis in devis| orderBy:sortKey:reverse |filter:search |itemsPerPage:5 " >
+                                            <td>{{oneDevis.from}}</td>
+                                            <td> Bon de commande envoyé par le client</td>
+                                            <td>{{oneDevis.createdAt | date}}</td>
+                                            <td>
+                                                <a class="btn btn-circle purple btn-outline" href="/back/commande-detail/{{oneDevis.id}}"><i class="fa fa-eye"></i></a>
+                                            </td>
+                                        <tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true">
+                            </dir-pagination-controls>
+                        </div>
+                    </div> 
+                    
+                    
+                </div>
+                
+                <!-- END CONTENT BODY -->
+            </div>

@@ -1,0 +1,83 @@
+<!doctype html>
+<div ng-controller="ProductController">
+			<section class="breadcrumbs">
+				<div class="container">
+					<ul class="horizontal_list clearfix bc_list f_size_medium">
+						<li class="m_right_10 current"><a href="#" class="default_t_color">Home<i class="fa fa-angle-right d_inline_middle m_left_10"></i></a></li>
+						<li class="m_right_10 current"><a href="#" class="default_t_color">Checkout<i class="fa fa-angle-right d_inline_middle m_left_10"></i></a></li>
+						<li><a href="#" class="default_t_color">Shopping Cart</a></li>
+					</ul>
+				</div>
+			</section>
+			<!--content-->
+			<div class="page_content_offset">
+				<div class="container">
+					<div class="row clearfix">
+						<!--left content column-->
+						<section class="col-lg-9 col-md-9 col-sm-9 m_xs_bottom_30"  ng-cloak>
+							<h2 class="tt_uppercase color_dark m_bottom_25">Cart</h2>
+							<!--cart table-->
+							<% if (cart == null || cart.totalQty == 0){ %>
+								<h3> Votre panier est vide.</h3>
+							<% } else {%>
+								<div>
+								<table class="table table_type_1 responsive_table full_width r_corners wraper ">
+									<thead>
+										<tr class="f_size_large">
+											<!--titles for td-->
+											<th>Image</th>
+											<th>Nom</th>
+											<th>Prix</th>
+											<th>Quantité</th>
+											<th>Total</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat ="product in cart.products">
+											<!--Product name and image-->
+											<td data-title="Product Image &amp; name" class="t_md_align_c">
+												<img style="height: 100px; width: 100px;" ng-src="{{product.item.picture}}" alt="" class="m_md_bottom_5 d_xs_block d_xs_centered">
+											</td>
+											<!--product key-->
+											<td>{{product.item.name}}</td>
+											<!--product price-->
+											<td >
+												<s>{{product.item.price +150 | currency}}</s>
+												<p class="f_size_large color_dark">{{product.item.price | currency}}</p>
+											</td>
+											<!--quanity-->
+											<td>
+												<div class="clearfix quantity r_corners d_inline_middle f_size_medium color_dark m_bottom_10">
+													<button class="bg_tr d_block f_left" data-direction="down" ng-click="reduceQuantity(product)">-</button>
+													<input type="text" name="" readonly value="{{product.quantity}}" class="f_left">
+													<button class="bg_tr d_block f_left" data-direction="up" ng-click="increaseQuantity(product)">+</button>
+												</div>
+												<div>
+													<a class="btn btn-danger"><i class="fa fa-times f_size_medium m_right_5" ng-click="remove(product)"></i>Supprimer</a><br>
+												</div>
+											</td>
+											<!--subtotal-->
+											<td data-title="Subtotal">
+												<p class="f_size_large fw_medium color_dark">{{product.price | currency}}</p>
+											</td>
+										</tr>
+										
+										<!--prices-->
+										<tr>
+											<td colspan="4">
+												<p class="fw_medium f_size_large t_align_r t_xs_align_c">Total:</p>
+											</td>
+											<td colspan="1">
+												<p class="fw_medium f_size_large scheme_color">{{cart.totalPrice| currency}}</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+								<a href="/app/checkout" class="tr_delay_hover r_corners button_type_14 bg_color_green color_light">Procéder aux paiement</a>
+							</div>
+							<% } %>
+						</section>
+					</div>
+				</div>
+		</div>

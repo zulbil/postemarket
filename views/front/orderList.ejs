@@ -1,0 +1,50 @@
+<!doctype html>
+<div ng-controller="ProductController" ng-cloak>
+			<!--breadcrumbs-->
+			<section class="breadcrumbs">
+				<div class="container">
+					<ul class="horizontal_list clearfix bc_list f_size_medium">
+						<li class="m_right_10 current"><a href="#" class="default_t_color">Home<i class="fa fa-angle-right d_inline_middle m_left_10"></i></a></li>
+						<li><a href="#" class="default_t_color">Orders List</a></li>
+					</ul>
+				</div>
+			</section>
+			<!--content-->
+			<div class="page_content_offset">
+				<div class="container">
+					<div class="row clearfix">
+						<!--left content column-->
+						<section class="col-lg-12 col-md-12 col-sm-12">
+							<h2 class="tt_uppercase color_dark m_bottom_30">Historique d'achats</h2>
+							<!--orders list table-->
+							<% if (orders.length < 1) { %>
+							<h3>Aucun achat a été récemment effectué</h3>
+							<% } else { %>
+								<table class="table_type_3 responsive_table full_width r_corners wrapper shadow bg_light_color_1 m_bottom_30 t_align_l">
+									<thead>
+										<tr class="f_size_large">
+											<!--titles for td-->
+											<th>Nombre de produits achetés</th>
+											<th>Date de paiement</th>
+											<th>Total</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat = "order in orders">
+											<!--order number-->
+											<td data-title="Order Number"><a href="order_details.html" class="color_dark">
+											<i  style= "font-size: 45px;" class="fa fa-shopping-cart" aria-hidden="true"></i>  {{order.cart.totalQty}} items</a></td>
+											<!--order date-->
+											<td data-title="Order Date">{{order.createdAt | date }}</td>
+											<!--order status-->
+											<!--quanity-->
+											<td data-title="Total"><span class="f_size_large fw_medium scheme_color">{{order.cart.totalPrice | currency}}</span></td>
+										</tr>
+									</tbody>
+								</table>
+							<% } %>
+						</section>
+						
+				</div>
+			</div>
+</div>

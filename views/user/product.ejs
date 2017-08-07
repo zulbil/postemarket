@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+            <div class="page-content-wrapper" ng-controller="ProductController">
+                <div class="page-content">
+                    <!-- BEGIN PAGE HEADER-->
+                    <!-- BEGIN THEME PANEL -->
+                    <!-- BEGIN PAGE BAR -->
+                    <div class="page-bar">
+                        <ul class="page-breadcrumb">
+                            <li>
+                                <a href="/dashboard">Home</a>
+                                <i class="fa fa-circle"></i>
+                            </li>
+                            <li>
+                                <span>eCommerce</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END PAGE BAR -->
+                    <!-- BEGIN PAGE TITLE-->
+                    <h3 class="page-title"> Gestion de Produits </h3>
+                    <!-- END PAGE TITLE-->
+                    <!-- END PAGE HEADER-->
+                    <!-- -->
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                 <i class="icon-graph"></i>
+                                 <span class="title">Produits</span>
+                            </div>
+                            <div class="actions">
+                                <button  class="btn btn-circle btn-success" ng-click="openForm()"><i class="fa fa-plus"></i>Ajouter un nouveau produit</button>
+                            </div>
+                        </div>
+                        <form class="form-inline text-right">
+                                     <div class="form-group">
+                                        <div class="input-icon input-icon-md right">
+                                            <i class="fa fa-search font-green"></i>
+                                           <input type="text" ng-model="search" class="form-control input-md" placeholder="Search...">
+                                        </div>
+                                     </div>
+                                  </form>
+                        <div class="portlet-body" ng-cloak>
+                            <div class="table-scrollable">
+                                  
+                                <table class="table table-bordered table-stripped table-hover" ng-init="getAllProducts()">
+                                    <thead class="text-bold">
+                                        <th ng-click="sort('name')">Nom
+                                            <i class="fa fa-sort" ng-show="sortKey=='name'" ng-class="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse}" aria-hidden="true"></i>
+                                        </th>
+                                        <th ng-click="sort('category')">Categorie
+                                            <i class="fa fa-sort" ng-show="sortKey=='category'" ng-class="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse}" aria-hidden="true"></i>
+                                        </th>
+                                        <th ng-click="sort('price')">Prix
+                                            <i class="fa fa-sort" ng-show="sortKey=='price'" ng-class="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse}" aria-hidden="true"></i>
+                                        </th>
+                                        <th ng-click="sort('date')">Date de Creation
+                                            <i class="fa fa-sort" ng-show="sortKey=='date'" ng-class="{'fa-chevron-up':reverse, 'fa-chevron-down':!reverse}" aria-hidden="true"></i>
+                                        </th>
+                                        <th>Picture</th>
+                                        <th></th>
+                                    </thead>
+                                    <tbody>
+                                        <tr dir-paginate="product in products| orderBy:sortKey:reverse |filter:search |itemsPerPage:5 " >
+                                            <td>{{product.name}}</td>
+                                            <td>{{product.category}}</td>
+                                            <td>{{product.price | currency}}</td>
+                                            <td>{{product.createdAt | date}}</td>
+                                            <td><img style=" height: 40px; width: 40px;" ng-src="{{product.picture }}"></td>
+                                            <td>
+                                                <button class="btn btn-circle purple btn-outline" ng-click="editProduct(product)"><i class="fa fa-pencil"></i></button>
+                                                <button class="btn btn-circle red btn-outline" ng-click="removeProduct(product)"><i class="fa fa-trash"></i></button>
+                                            </td>
+                                        <tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true">
+                            </dir-pagination-controls>
+                        </div>
+                    </div> 
+                    <!-- CONTENT -->
+                    <div class="row" ng-show="showForm">
+                        <div class="col-md-12">
+                            <!-- BEGIN VALIDATION STATES-->
+                            <div class="portlet light portlet-fit portlet-form bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-settings font-dark"></i>
+                                        <span class="caption-subject font-dark sbold uppercase">Ajouter un nouveau produit</span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <!-- BEGIN FORM-->
+                                    <form class="form-horizontal" ng-submit="addProduct()" novalidate="novalidate">
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Nom</label>
+                                                <div class="col-md-8">
+                                                 <input type="text" class="form-control" ng-model="product.name" required="required"/> </div>
+                                            </div>
+                                            <div class="form-group" ng-init="getAllCategories()">
+                                                <label class="control-label col-md-3">Categorie</label>
+                                                <div class="col-md-8">
+                                                    <select class="form-control" ng-model="product.category" required="required">
+                                                        <option value="">Choisissez une catégorie</option>
+                                                        <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Prix&nbsp;&nbsp;</label>
+                                                <div class="col-md-8">
+                                                    <input name="price" type="number" class="form-control" ng-model="product.price" required="required"/> 
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                    <label class="control-label col-md-3">Image</label>
+                                                    <div class="col-md-4">
+                                                        <button class="btn green btn-outline" ng-click="upload()"><i class="fa fa-upload" aria-hidden="true"></i>Enregistrer</button> 
+
+                                                    </div>
+                                            </div>
+                                            <div class="form-group text-center">
+                                                    <div class="col-md-6" style="padding-left: 50px; ">
+                                                        <!-- Show the thumbnail only when the picture is uploaded -->
+                                                        <a href="{{product.picture}}" class="thumbnail" ng-if="product.picture">
+                                                        <!-- the picture is rendered with width: 500 and sharpened -->
+                                                        <img style="height: 150px; width: 150px;" ng-src="{{product.picture | fpConvert: {filter:'sharpen'} }}" />
+                                                        </a>
+                                                    </div>
+                                                    
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Description</label>
+                                                <div class="col-md-8">
+                                                 <textarea class="form-control" rows="6" ng-model="product.description" required="required">
+                                                    </textarea>
+                                                    
+                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                    <button type="submit" class="btn green">Enregistrer</button>
+                                                    <button type="button" class="btn default" ng-click="close()">Annuler</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>  
+                                    <!-- END FORM-->
+                                </div>
+                                <!-- END VALIDATION STATES-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-show="showEditForm">
+                        <div class="col-md-12">
+                            <!-- BEGIN VALIDATION STATES-->
+                            <div class="portlet light portlet-fit portlet-form bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-settings font-dark"></i>
+                                        <span class="caption-subject font-dark sbold uppercase">Modifier un produit</span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <!-- BEGIN FORM-->
+                                    <form class="form-horizontal">
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Nom</label>
+                                                <div class="col-md-8">
+                                                 <input type="text" class="form-control" ng-model="currentProduct.name" /> </div>
+                                            </div>
+                                            <div class="form-group" ng-init="getAllCategories()">
+                                                <label class="control-label col-md-3">Categorie</label>
+                                                <div class="col-md-8">
+                                                    <select class="form-control" ng-model="currentProduct.category" required="required">
+                                                        <option value="">Choisissez une catégorie</option>
+                                                        <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Prix&nbsp;&nbsp;</label>
+                                                <div class="col-md-8">
+                                                    <input name="price" type="number" class="form-control" ng-model="currentProduct.price"/> 
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                    <label class="control-label col-md-3">Image</label>
+                                                    <div class="col-md-4">
+                                                        <button class="btn green btn-outline" ng-click="uploadAnother()"><i class="fa fa-upload" aria-hidden="true"></i>Enregistrer</button> 
+
+                                                    </div>
+                                            </div>
+                                            <div class="form-group">
+                                                    <div class="col-md-6">
+                                                        <!-- Show the thumbnail only when the picture is uploaded -->
+                                                        <a href="{{currentProduct.picture}}" class="thumbnail" ng-if="currentProduct.picture">
+                                                        <!-- the picture is rendered with width: 500 and sharpened -->
+                                                        <img style="height: 150px; width: 150px;" ng-src="{{currentProduct.picture | fpConvert: {filter:'sharpen'} }}" />
+                                                        </a>
+                                                    </div>
+                                                    
+                                            </div>
+                                         <!--    <div class="form-group">
+                                                    <label class="control-label col-md-3">More Pictures</label>
+                                                    <div class="col-md-4">
+                                                        <button class="btn green btn-outline" ng-click="uploadMultiple()"><i class="fa fa-upload" aria-hidden="true"></i>Enregistrer</button> 
+
+                                                    </div>
+                                            </div>
+                                            <div class="form-group">
+                                                    <div class="col-md-6" ng-repeat="picture in currentProduct.morePictures">
+                                                   
+                                                        <a href="{{picture}}" class="thumbnail" ng-if="picture">
+                                                       
+                                                        <img style="height: 150px; width: 150px;" ng-src="{{picture | fpConvert: {filter:'sharpen'} }}" />
+                                                        </a>
+                                                    </div>
+                                                    
+                                            </div> -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Description</label>
+                                                <div class="col-md-8">
+                                                    <textarea class="form-control" ng-model="currentProduct.description" rows="6">
+                                                    </textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                    <button type="submit" class="btn green" ng-click="updateProduct()">Enregistrer</button>
+                                                    <button type="button" class="btn default" ng-click="close()">Annuler</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- END FORM-->
+                                </div>
+                                <!-- END VALIDATION STATES-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                <!-- END CONTENT BODY -->
+            </div>

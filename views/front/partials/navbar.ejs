@@ -1,0 +1,152 @@
+<!doctype html>
+    <div class="boxed_layout relative w_xs_auto">
+ 
+      <header role="banner" ng-controller="NavBarController">
+        <!--header top part-->
+        <section class="h_top_part">
+          <div class="container">
+            <div class="row clearfix">
+              <div class="col-lg-6 col-md-6 col-sm-5 t_xs_align_c">
+                <p class="f_size_small" ng-if="showLogin">Bienvenue chez nous! Pouvez-vous vous <a href="#" data-popup="#login_popup" >connectez</a> ou <a href="/app/signup">Créer un nouveau compte</a> </p>
+                <p class="f_size_small" ng-if="!showLogin" ng-cloak>Bienvenue {{me.fullname}} </p>
+              </div>
+              <nav class="col-lg-6 col-md-6 col-sm-5 t_align_r t_xs_align_c">
+                <ul class="d_inline_b horizontal_list clearfix f_size_small users_nav">
+                  <li><a href="/app/login" class="default_t_color">Mon compte</a></li>
+                  <li><a href="/app/orders" class="default_t_color">Mes achats</a></li>
+                  <li><a href="/app/checkout" class="default_t_color">Paiement</a></li> 
+                  <li ng-if="!showLogin"><a href="/logout" class="default_t_color">Déconnexion</a></li> 
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </section>
+        <!--header bottom part-->
+        <section class="h_bot_part container">
+          <div class="clearfix row">
+            <div class="col-lg-6 col-md-6 col-sm-4 t_xs_align_c">
+              <a href="/" class="logo m_xs_bottom_15 d_xs_inline_b">
+                <img src="/images/logoposte.png" alt="">
+              </a>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-8 t_align_r t_xs_align_c">
+              <ul class="d_inline_b horizontal_list clearfix t_align_l site_settings">
+                <!--language settings-->
+                <li class="m_left_5">
+                  <a role="button" href="/app/compare" class="button_type_1 color_dark d_block bg_light_color_1 r_corners tr_delay_hover box_s_none"><i class="fa fa-files-o f_size_ex_large"></i></a>
+                </li>
+                <!--shopping cart-->
+                <li class="m_left_5 relative container3d" id="shopping_button">
+                  <a role="button" href="/app/cart" class="button_type_3 color_light bg_scheme_color d_block r_corners tr_delay_hover box_s_none" ng-cloak>
+                    <span class="d_inline_middle shop_icon m_mxs_right_0">
+                      <i class="fa fa-shopping-cart"></i>
+                      <% if (cart.totalQty > 0 && cart ) { %>
+                        <span class="count tr_delay_hover type_2 circle t_align_c" ng-model="cart.totalQty">{{cart.totalQty}}</span>
+                      <% } %>
+                    </span>
+                    <% if (cart.totalQty > 0 && cart ) { %> 
+                      <b class="d_mxs_none" ng-model="cart.totalPrice">{{cart.totalPrice | currency}}</b>
+                    <% } %>
+                  </a>
+                  <% if (cart.totalQty == 0 || cart == 'null' ) { %>
+                  <div class="shopping_cart top_arrow tr_all_hover r_corners" >
+                    <div class="f_size_medium sc_header">
+                      <h3>Votre Panier est vide</h3>
+                    </div>
+                  </div>
+                  <% } %>
+                  <% if (cart.totalQty > 0 && cart ) { %>
+                  <div ng-if="!isEmpty" class="shopping_cart top_arrow tr_all_hover r_corners">
+                    <div class="f_size_medium sc_header">Recemment ajoutés</div>
+                    <ul class="products_list">
+                      <li ng-repeat=" product in cart.items | limitTo: 3">
+                        <div class="clearfix">
+                          <!--product image-->
+                          <img style="height: 60px; width: 60px;" class="f_left m_right_10" ng-src="{{product.item.picture}}" alt="">
+                          <!--product description-->
+                          <div class="f_left product_description">
+                            <a href="/app/cart" class="color_dark m_bottom_5 d_block">{{product.item.name}}</a>
+                            <span class="f_size_medium">{{product.item.name}}</span>
+                          </div>
+                          <!--product price-->
+                          <div class="f_left f_size_medium">
+                            <div class="clearfix">
+                              {{product.quantity}} x <b class="color_dark">{{product.item.price}}</b>
+                            </div>
+                            <button class="close_product color_dark tr_hover"><i class="fa fa-times"></i></button>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                    <!--total price-->
+                    <ul class="total_price bg_light_color_1 t_align_r color_dark">
+                      <li class="m_bottom_10">Tax: <span class="f_size_large sc_price t_align_l d_inline_b m_left_15">$0.00</span></li>
+                      <li class="m_bottom_10">Discount: <span class="f_size_large sc_price t_align_l d_inline_b m_left_15">$37.00</span></li>
+                      <li>Total: <b class="f_size_large bold scheme_color sc_price t_align_l d_inline_b m_left_15">${{cart.totalPrice}}</b></li>
+                    </ul>
+                    <div class="sc_footer t_align_c">
+                      <a href="/app/cart" role="button" class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5">Accéder au panier</a>
+                      <a href="/app/checkout" role="button" class="button_type_4 bg_scheme_color d_inline_middle r_corners tr_all_hover color_light">Procéder au paiement</a>
+                    </div>
+                  </div>
+                  <% } %>
+                </li>
+                
+                <li ng-if="!showLogin" class="m_left_5 relative container3d" ng-cloak>
+                    <a href="#" class="tr_delay_hover color_light">
+                      <img class="img-circle" style="height: 35px; width: 35px;" ng-src="{{me.profilePicture}}">
+                    </a>
+                </li>
+
+
+              </ul>
+            </div>
+          </div>
+        </section>
+        <!--main menu container-->
+        <section class="menu_wrap relative">
+          <div class="container clearfix">
+            <!--button for responsive menu-->
+            <button id="menu_button" class="r_corners centered_db d_none tr_all_hover d_xs_block m_bottom_10">
+              <span class="centered_db r_corners"></span>
+              <span class="centered_db r_corners"></span>
+              <span class="centered_db r_corners"></span>
+            </button>
+            <!--main menu-->
+            <nav role="navigation" class="f_left f_xs_none d_xs_none" ng-cloak>  
+              <ul class="horizontal_list main_menu clearfix">
+              <li class="relative f_xs_none m_xs_bottom_5"><a href="" class="tr_delay_hover color_light tt_uppercase" ng-init="getAllCategories()"><b>Shop</b></a>
+                  <!--sub menu-->
+                  <div class="sub_menu_wrap top_arrow d_xs_none tr_all_hover clearfix r_corners w_xs_auto">
+                    <div class="f_left m_left_10 m_xs_left_0 f_xs_none" ng-repeat="category in categories">
+                      <ul class="sub_menu">
+                        <li><a class="color_dark tr_delay_hover" href="/app/category/{{category.name}}/products">{{category.name}}</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="relative f_xs_none m_xs_bottom_5"><a href="/app/manufacturers" class="tr_delay_hover color_light tt_uppercase"><b>Fournisseurs</b></a>
+                </li>
+                <li ng-if="me.role == 'admin'" class="relative f_xs_none m_xs_bottom_5"><a href="/admin/adminPortal" class="tr_delay_hover color_light tt_uppercase"><b>Administration</b></a></li>
+                <li ng-if="me.role == 'supplier'" class="relative f_xs_none m_xs_bottom_5"><a href="/back/dashboard" class="tr_delay_hover color_light tt_uppercase"><b>Portail de Gestion</b></a></li>
+                <li class="relative f_xs_none m_xs_bottom_5"><a href="/app/contact" class="tr_delay_hover color_light tt_uppercase"><b>Contact</b></a></li>
+                <li class="relative f_xs_none m_xs_bottom_5"><a href="contact.html" class="tr_delay_hover color_light tt_uppercase"><b>A Propos de Nous</b></a></li>
+              </ul>
+            </nav>
+            <button class="f_right search_button tr_all_hover f_xs_none d_xs_none">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+          <!--search form-->
+          <div class="searchform_wrap tf_xs_none tr_all_hover">
+            <div class="container vc_child h_inherit relative">
+              <form role="search" class="d_inline_middle full_width">
+                <input type="text" name="search" placeholder="Type text and hit enter" class="f_size_large">
+              </form>
+              <button class="close_search_form tr_all_hover d_xs_none color_dark">
+                <i class="fa fa-times"></i>
+              </button>
+            </div>
+          </div>
+        </section>
+      </header>

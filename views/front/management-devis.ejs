@@ -1,0 +1,69 @@
+<!doctype html>
+<div ng-controller="ProductController" ng-cloak>
+			<section class="breadcrumbs">
+				<div class="container">
+					<ul class="horizontal_list clearfix bc_list f_size_medium">
+						<li class="m_right_10 current"><a href="/" class="default_t_color">Home<i class="fa fa-angle-right d_inline_middle m_left_10"></i></a></li>
+						<li class="m_right_10 current"><a href="/app/devis" class="default_t_color">Devis</a></li>
+			
+					</ul>
+				</div>
+			</section>
+			<!--content-->
+			<div class="page_content_offset container">
+				<div class="row clearfix">
+					<div class="col-md-3 col-lg-3 col-xs-12">
+						<div class="page-header">
+						<button class="btn btn-block button_type_6 bg_scheme_color f_size_large r_corners tr_all_hover color_light">Créer un devis</button>	
+						</div><br>
+						
+					</div>
+					<div class="col-md-9 col-lg-9 col-xs-12">
+						
+						<div class="row clearfix">
+						<div class="col-lg-9 col-sm-12 col-md-9 m_bottom_40">
+							<!--accordion-->
+							<div class="accordion toggle">
+								<!--accordion item-->
+								<div class="accordion_item r_corners shadow wrapper m_bottom_5">
+									<h3 class="color_light active a_title relative tr_all_hover">
+										Paiement Card Process <ul class="f_right horizontal_list clearfix f_mxs_none d_mxs_inline_b"></ul>
+										<span class="minus_icon tr_all_hover">-</span>
+										<span class="plus_icon tr_all_hover">+</span>
+									</h3>
+									<div class="bg_light_color_3 a_content">
+										<form  name="devisForm">
+											<ul>
+												<li class="m_bottom_15">
+													<label class="d_inline_b m_bottom_5 required">Choisir le fournisseur</label>
+														<select class="custom_select relative" ng-model="supplier">
+															<option ng-repeat="supplier in suppliers" value="{{supplier.fullname}}">{{supplier.fullname}}
+															</option>
+														</select>
+												</li>
+												<li class="m_bottom_15">
+													<label class="d_inline_b m_bottom_5 required">Produits à choisir</label>
+														<select>
+															<option ng-repeat="produit in supplier.products" value="{{produit.name}}">{{produit.name}}</option>
+														</select>
+												</li>
+												<br>
+												<li>
+													
+												</li>
+											</ul>
+											<button type="submit" class="button_type_6 bg_scheme_color f_size_large r_corners tr_all_hover color_light m_bottom_20">Envoyer votre devis</button>
+										</form>
+										{{supplier}}
+									</div>
+								</div>
+								<!--accordion item-->
+								
+							</div>
+						</div>
+					
+					</div>
+				</div>
+			</div>
+
+</div>

@@ -1,0 +1,208 @@
+<!doctype html>
+<div ng-controller="ProductController">
+<section class="breadcrumbs">
+				<div class="container">
+					<ul class="horizontal_list clearfix bc_list f_size_medium">
+						<li class="m_right_10 current"><a href="#" class="default_t_color">Home<i class="fa fa-angle-right d_inline_middle m_left_10"></i></a></li>
+						<li ng-cloak><a href="#" class="default_t_color">{{productCategory[0].category}}</a></li>
+					</ul>
+				</div>
+			</section>
+			<!--content-->
+			<div class="page_content_offset">
+				<div class="container">
+							<div class="row clearfix">
+								<div class="col-lg-6 col-md-6">
+									<p class="d_inline_middle f_size_medium">Trié par Prix:</p>
+									<div class="clearfix d_inline_middle m_left_10">
+										<button class="button_type_7 bg_light_color_1 color_dark tr_all_hover r_corners mw_0 box_s_none bg_cs_hover f_left m_left_5" ng-click="sort('price')"><i class="fa fa-sort-amount-asc m_left_0 m_right_0"></i></button>
+								</div>
+								<div class="col-lg-6 col-md-6">
+									<div>
+										<form class="form-inline">
+											<div>
+												<input type="text" name="search" ng-model="search" placeholder="Recherche...">
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+					<div class="row clearfix">
+						<!--left content column-->
+						<section class="col-lg-12 col-md-12 col-sm-12">
+							<!--sort-->
+					
+							<!--products-->
+							<section class="products_container list_type clearfix m_bottom_5 m_left_0 m_right_0">
+								<!--product item-->
+								<div class="product_item full_width list_type hit m_left_0 m_right_0" ng-repeat="product in productCategory |orderBy:sortKey:reverse| filter: search" ng-cloak>
+									<figure class="r_corners photoframe tr_all_hover type_2 shadow relative clearfix">
+										<!--product preview-->
+										<a href="/app/product/{{product.id}}" class="d_block f_left relative pp_wrap m_right_30 m_sm_right_20 m_xs_right_25">
+											<img style="height: 242px; width: 242px;" ng-src="{{product.picture}}" class="tr_all_hover" alt="">
+											<span role="button" data-popup="#quick_view_product" class="button_type_5 box_s_none color_light r_corners tr_all_hover d_xs_none" ng-click="select(product)">Quick View</span>
+										</a>
+										<!--description and price of product-->
+										<figcaption>
+											<div class="clearfix">
+												<div class="f_left p_list_description f_sm_none w_sm_full m_xs_bottom_10">
+													<h4 class="fw_medium"><a href="#" class="color_dark">{{product.name}}</a></h4>
+													<div class="m_bottom_10">
+														<!--rating-->
+														<ul class="horizontal_list d_inline_middle clearfix rating_list type_2 tr_all_hover">
+															<li class="active">
+																<i class="fa fa-star-o empty tr_all_hover"></i>
+																<i class="fa fa-star active tr_all_hover"></i>
+															</li>
+															<li class="active">
+																<i class="fa fa-star-o empty tr_all_hover"></i>
+																<i class="fa fa-star active tr_all_hover"></i>
+															</li>
+															<li class="active">
+																<i class="fa fa-star-o empty tr_all_hover"></i>
+																<i class="fa fa-star active tr_all_hover"></i>
+															</li>
+															<li class="active">
+																<i class="fa fa-star-o empty tr_all_hover"></i>
+																<i class="fa fa-star active tr_all_hover"></i>
+															</li>
+															<li>
+																<i class="fa fa-star-o empty tr_all_hover"></i>
+																<i class="fa fa-star active tr_all_hover"></i>
+															</li>
+														</ul>
+														<a href="#" class="d_inline_middle default_t_color f_size_medium m_left_10"> {{product.comments.length}} commentaire(s) </a>
+													</div>
+													<hr class="m_bottom_10">
+													<p class="d_sm_none d_xs_block">Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor sit amet, consecvtetuer adipiscing elit. </p>
+												</div>
+												<div class="f_right t_align_r f_sm_none t_sm_align_l">
+													<p class="scheme_color f_size_large m_bottom_15"><span class="fw_medium">{{product.price | currency}}</span></p>
+													<button class="button_type_4 bg_scheme_color r_corners tr_all_hover color_light mw_0 m_bottom_15" ng-click="addToCart(product)">Ajouter au panier</button><br>
+													<ul>
+														<li class="m_bottom_5"><a href="#" class="color_dark">Ajouter dans la liste de souhait</a></li>
+														<li class="m_bottom_5"><a href="#" class="color_dark" ng-click="compare(product)">Comparer le produit</a></li>
+													</ul>
+												</div>
+											</div>
+										</figcaption>
+									</figure>
+								</div>
+								
+								<div class="popup_wrap d_none" id="quick_view_product">
+        <section class="popup r_corners shadow">
+          <button class="bg_tr color_dark tr_all_hover text_cs_hover close f_size_large"><i class="fa fa-times"></i></button>
+          <div class="clearfix">
+            <div class="custom_scrollbar">
+              <!--left popup column-->
+              <div class="f_left half_column">
+                <div class="relative d_inline_b m_bottom_10 qv_preview">
+                  <img style="height: 300px; width: 360px;" ng-src="{{product.picture}}" class="tr_all_hover" alt="">
+                </div>
+                <!--carousel-->
+                <div class="d_inline_middle">Share this:</div>
+                <div class="d_inline_middle m_left_5">
+                  <!-- AddThis Button BEGIN -->
+                  <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                  <a class="addthis_button_preferred_1"></a>
+                  <a class="addthis_button_preferred_2"></a>
+                  <a class="addthis_button_preferred_3"></a>
+                  <a class="addthis_button_preferred_4"></a>
+                  <a class="addthis_button_compact"></a>
+                  <a class="addthis_counter addthis_bubble_style"></a>
+                  </div>
+                  <!-- AddThis Button END -->
+                </div>
+              </div>
+              <!--right popup column-->
+              <div class="f_right half_column">
+                <!--description-->
+                <h2 class="m_bottom_10"><a href="#" class="color_dark fw_medium">{{product.name}}</a></h2>
+                <div class="m_bottom_10">
+                  <!--rating-->
+                  <ul class="horizontal_list d_inline_middle type_2 clearfix rating_list tr_all_hover">
+                    <li class="active">
+                      <i class="fa fa-star-o empty tr_all_hover"></i>
+                      <i class="fa fa-star active tr_all_hover"></i>
+                    </li>
+                    <li class="active">
+                      <i class="fa fa-star-o empty tr_all_hover"></i>
+                      <i class="fa fa-star active tr_all_hover"></i>
+                    </li>
+                    <li class="active">
+                      <i class="fa fa-star-o empty tr_all_hover"></i>
+                      <i class="fa fa-star active tr_all_hover"></i>
+                    </li>
+                    <li class="active">
+                      <i class="fa fa-star-o empty tr_all_hover"></i>
+                      <i class="fa fa-star active tr_all_hover"></i>
+                    </li>
+                    <li>
+                      <i class="fa fa-star-o empty tr_all_hover"></i>
+                      <i class="fa fa-star active tr_all_hover"></i>
+                    </li>
+                  </ul>
+                  <a href="#" class="d_inline_middle default_t_color f_size_small m_left_5">1 Review(s) </a>
+                </div>
+                <hr class="m_bottom_10 divider_type_3">
+                <table class="description_table m_bottom_10">
+                  <tr>
+                    <td>Availability:</td>
+                    <td><span class="color_green">in stock</span> {{product.quantity}} item(s)</td>
+                  </tr>
+                </table>
+                <hr class="divider_type_3 m_bottom_10">
+                <p class="m_bottom_10">{{product.description}}</p>
+                <hr class="divider_type_3 m_bottom_15">
+                <div class="m_bottom_15">
+                  <s class="v_align_b f_size_ex_large">${{product.price + 850 }}</s><span class="v_align_b f_size_big m_left_5 scheme_color fw_medium">{{product.price | currency}}</span>
+                </div>
+                <table class="description_table type_2 m_bottom_15">
+                  <tr>
+                    <td class="v_align_m">Quantity:</td>
+                    <td class="v_align_m">
+                      <div class="clearfix quantity r_corners d_inline_middle f_size_medium color_dark">
+                        <button class="bg_tr d_block f_left" data-direction="down">-</button>
+                        <input type="text" name="" readonly value="1" class="f_left">
+                        <button class="bg_tr d_block f_left" data-direction="up">+</button>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+                <div class="clearfix m_bottom_15">
+                  <button class="button_type_12 r_corners bg_scheme_color color_light tr_delay_hover f_left f_size_large" ng-click="addToCart(product)">Add to Cart</button>
+                  <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i class="fa fa-heart-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">Wishlist</span></button>
+                  <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0"><i class="fa fa-files-o f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">Compare</span></button>
+                  <button class="button_type_12 bg_light_color_2 tr_delay_hover f_left r_corners color_dark m_left_5 p_hr_0 relative"><i class="fa fa-question-circle f_size_big"></i><span class="tooltip tr_all_hover r_corners color_dark f_size_small">Ask a Question</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+      </section>
+    </div>
+								
+							</section>
+							
+							<hr class="m_bottom_10 divider_type_3">
+							<a href="/" role="button" class="d_inline_b bg_light_color_2 color_dark tr_all_hover button_type_4 r_corners"><i class="fa fa-reply m_left_5 m_right_10 f_size_large"></i>Retour à l'acceuil</a><br>
+							<div class="row clearfix m_bottom_15 m_xs_bottom_30">
+								<div class="col-lg-5 col-md-5 col-sm-4 t_align_r t_xs_align_l">
+									<!--pagination-->
+									<a role="button" href="#" class="button_type_10 color_dark d_inline_middle bg_cs_hover bg_light_color_1 t_align_c tr_delay_hover r_corners box_s_none"><i class="fa fa-angle-left"></i></a>
+									<ul class="horizontal_list clearfix d_inline_middle f_size_medium m_left_10">
+										<li class="m_right_10"><a class="color_dark" href="#">1</a></li>
+										<li class="m_right_10"><a class="scheme_color" href="#">2</a></li>
+										<li class="m_right_10"><a class="color_dark" href="#">3</a></li>
+									</ul>
+									<a role="button" href="#" class="button_type_10 color_dark d_inline_middle bg_cs_hover bg_light_color_1 t_align_c tr_delay_hover r_corners box_s_none"><i class="fa fa-angle-right"></i></a> 
+									
+								</div>
+
+							</div>
+						</section>
+						<!--right column-->
+						
+					</div>
+				</div>
+			</div>
+		</div>

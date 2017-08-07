@@ -1,0 +1,137 @@
+<!doctype html>
+<div ng-controller="ProductController" ng-cloak>
+			<section class="breadcrumbs">
+				<div class="container">
+					<ul class="horizontal_list clearfix bc_list f_size_medium">
+						<li class="m_right_10 current"><a href="#" class="default_t_color">Home<i class="fa fa-angle-right d_inline_middle m_left_10"></i></a></li>
+						<li class="m_right_10 current"><a href="#" class="default_t_color">Checkout<i class="fa fa-angle-right d_inline_middle m_left_10"></i></a></li>
+						<li><a href="#" class="default_t_color">Shopping Cart</a></li>
+					</ul>
+				</div>
+			</section>
+			<!--content-->
+			<div class="page_content_offset container">
+				<div class="row clearfix">
+					<div class="col-md-3 col-lg-3 col-xs-12">
+						<div class="page-header">
+							<h2>Quantity: {{cart.totalQty}}</h2> 
+						</div><br>
+						<ul class="products_list">
+	                      <li ng-repeat=" product in cart.items">
+	                        <div class="clearfix">
+	                          <!--product image-->
+	                          <img style="height: 60px; width: 60px;" class="f_left m_right_10" ng-src="{{product.item.picture}}" alt="">
+	                          <!--product description-->
+	                          <div class="f_left product_description">
+	                            <span class="f_size_medium">{{product.item.name}}</span>
+	                          </div>
+	                          <!--product price-->
+	                          <div class="f_left f_size_medium">
+	                            <div class="clearfix">
+	                              {{product.quantity}} x <b class="color_dark">{{product.item.price}}</b>
+	                            </div>
+	                            <button class="close_product color_dark tr_hover"><i class="fa fa-times"></i></button>
+	                          </div>
+	                        </div>
+	                      </li>
+                    </ul>
+					</div>
+					<div class="col-md-9 col-lg-9 col-xs-12">
+						<h1>Total: {{cart.totalPrice | currency}}</h1><br>
+						<div class="row clearfix">
+						<div class="col-lg-9 col-sm-12 col-md-9 m_bottom_40">
+							<!--accordion-->
+							<div class="accordion toggle">
+								<!--accordion item-->
+								<div class="accordion_item r_corners shadow wrapper m_bottom_5">
+									<h3 class="color_light active a_title relative tr_all_hover">
+										Paiement Card Process <ul class="f_right horizontal_list clearfix f_mxs_none d_mxs_inline_b">
+							<li><img src="/images/payment_img_1.png" alt=""></li>
+							<li class="m_left_5"><img src="/images/payment_img_2.png" alt=""></li>
+							<li class="m_left_5"><img src="/images/payment_img_3.png" alt=""></li>
+							<li class="m_left_5"><img src="/images/payment_img_4.png" alt=""></li>
+							<li class="m_left_5"><img src="/images/payment_img_5.png" alt=""></li>
+						</ul>
+										<span class="minus_icon tr_all_hover">-</span>
+										<span class="plus_icon tr_all_hover">+</span>
+									</h3>
+									<div class="bg_light_color_3 a_content">
+										<form stripe-form="stripeCallback" name="checkoutForm">
+											<ul>
+												<li class="m_bottom_15">
+													<label for="d_name" class="d_inline_b m_bottom_5 required">Name</label>
+													<input type="text" ng-model="name" class="r_corners full_width">
+												</li>
+												<li class="m_bottom_15">
+													<label  class="d_inline_b m_bottom_5 required">Credit Card Number</label>
+													<input type="text" name="card" ng-model="number" class="r_corners full_width" payments-format="card" payments-validate="card" payments-type-model="type">
+													<div ng-if="checkoutForm.card.$invalid">
+													    <p style="color: red;">Error: invalid card number!</p>
+													</div>
+												</li>
+												<li class="m_bottom_15">
+													<div class="row clearfix">
+														<div class="col-md-6 col-lg-6 col-sm-12">
+															<label  class="d_inline_b m_bottom_5 required">Expiration </label>
+													<input type="text" ng-model="expiry" class="r_corners full_width" payments-format="expiry" payments-validate="expiry">
+														</div>
+														<div class="col-md-6 col-lg-6 col-sm-12 form-group">
+															<label  class="d_inline_b m_bottom_5 required">CVC</label>
+													<input type="text" ng-model="cvc" class="r_corners full_width" payments-format ="cvc" payments-validate="cvc">
+														</div>
+													</div>
+												</li>
+												<li class="m_bottom_15">
+													<label for="address_1" class="d_inline_b m_bottom_5 required">Address </label>
+													<input type="text" ng-model="address" name="" class="r_corners full_width">
+												</li>
+												<li class="m_bottom_15">
+													<label for="code_1" class="d_inline_b m_bottom_5 required">Zip / Postal Code</label>
+													<input type="text" id="code_1" ng-model="address_zip_check" name="" class="r_corners full_width">
+												</li>
+												<li class="m_bottom_15">
+													<label for="city_1" class="d_inline_b m_bottom_5 required">City</label>
+													<input type="text" id="city_1" ng-model="address_city" name="" class="r_corners full_width">
+												</li>
+												<li class="m_bottom_15">
+													<label for="phone_1" class="d_inline_b m_bottom_5">Phone</label>
+													<input type="text" id="phone_1" ng-model="receipt_number" name="" class="r_corners full_width">
+												</li>
+												<br>
+												<li>
+													
+												</li>
+											</ul>
+											<button type="submit" class="button_type_6 bg_scheme_color f_size_large r_corners tr_all_hover color_light m_bottom_20">Acheter</button>
+										</form>
+									</div>
+								</div>
+								<!--accordion item-->
+								<!--accordion item-->
+								<div class="accordion_item r_corners shadow wrapper m_bottom_5">
+									<h3 class="bg_light_color_1 color_dark a_title relative tr_all_hover">
+										Terms of Service
+										<span class="minus_icon tr_all_hover">-</span>
+										<span class="plus_icon tr_all_hover">+</span>
+									</h3>
+									<div class="bg_light_color_3 a_content">
+										<p class="m_bottom_10">Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor sit amet, consecvtetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque. </p>
+										<p class="m_bottom_10">Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse sollicitudin velit sed leo. Ut pharetra augue nec augue. Nam elit agna,endrerit sit amet, tincidunt ac, viverra sed, nulla. Donec porta diam eu massa. Quisque diam lorem, interdum vitae,dapibus ac, scelerisque vitae, pede. Donec eget tellus non erat lacinia fermentum. Donec in velit vel ipsum auctor pulvinar. </p>
+										<form>
+										<div>
+											<input type="checkbox" name="checkbox_8" id="checkbox_8" class="d_none"><label for="checkbox_8">I agree to the Terms of Service (Terms of service)</label>
+										</div>	
+										
+										<button class="button_type_6 bg_scheme_color f_size_large r_corners tr_all_hover color_light m_bottom_20">Confirm Purchase</button>
+									
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					
+					</div>
+				</div>
+			</div>
+
+</div>
