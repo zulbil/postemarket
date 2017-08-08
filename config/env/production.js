@@ -12,5 +12,8 @@
 
 module.exports = {
 
+  models: {
+    connection: 'MongodbServer'
+  }
 
 };
