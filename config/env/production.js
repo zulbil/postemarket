@@ -23,7 +23,7 @@ module.exports = {
 
   session: {
     adapter: 'redis', 
-     url: 'redis://redistogo:06eaeeaae7055cd4d693d23d2f2cdf11@angelfish.redistogo.com:11228/'
+     url: process.env.REDISTOGO_URL
   }
   // , 
 
