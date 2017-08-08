@@ -333,9 +333,9 @@ module.exports = {
 
 	showHomePage: function (req, res) {
 		
-		var criteria = { id: req.session.userId.id}; 
 
-		User.findOne(criteria).exec(function (err, user){
+
+		User.find(req.session.userId).exec(function (err, user){
 			if(err){
 				return res.negotiate(err);
 			}
