@@ -23,7 +23,7 @@ module.exports.connections = {
 
   MongodbServerLive: {
     adapter: 'sails-mongo',
-    url: 'mongodb://heroku_5l0zfrsm:cnpdugiduth66od3o8e93al2vq@ds023435.mlab.com:23435/heroku_5l0zfrsm',
+    url: 'mongodb://heroku_5z0kcq10:tslu7v6ukl4aug6uil8j0bp9fb@ds161001.mlab.com:61001/heroku_5z0kcq10',
     ssl: true
   }  
 
