@@ -332,14 +332,7 @@ module.exports = {
 	}, 
 
 	showHomePage: function (req, res) {
-		if(!req.session.userId){
-			return res.view('./front/home', {
-			layout: './front/frontLayout', 
-			me: null, 
-			product:null, 
-			cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0}
-			});
-		}
+		
 
 
 		User.findOne(req.session.userId).exec(function (err, user){
@@ -351,18 +344,7 @@ module.exports = {
 			}
 			return res.view('front/home', {
 				layout: './front/frontLayout', 
-				me: {
-						id: user.id, 
-						username: user.username, 
-						fullname: user.fullname,
-						profilePicture: user.profilePicture, 
-						role: user.role, 
-						tel: user.tel, 
-						address: user.address, 
-						city: user.city, 
-						createdAt: user.createdAt 
-
-				},
+				me: req.session.userId?req.session.userId : null,
 				product: null, 
 				cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0}
 			});
