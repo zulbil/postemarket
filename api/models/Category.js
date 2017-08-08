@@ -6,7 +6,8 @@
  */
 
 module.exports = {
-
+  connection: 'MongoDbServer', 
+  
   attributes: {
   	name: {type: 'string', required: true},
   	parent: {
