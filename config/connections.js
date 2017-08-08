@@ -21,11 +21,5 @@
 
 module.exports.connections = {
 
-  MongodbServerLive: {
-    adapter: 'sails-mongo',
-    url: process.env.MONGOLAB_GOLD_URI,
-    ssl: true
-  }  
-
-  // mongodb://username:password@localhost:27027/database
+  
 };

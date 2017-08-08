@@ -88,7 +88,7 @@
 		    $scope.pageSize = 5; 
 			$scope.currentPage = 1; 
 			
-		 	// console.log($scope.product); 
+		 	console.log($scope.products); 
 			// console.log($scope.productCategory); 
 			// console.log('Le produit est :'+angular.toJson($scope.product)); 
 			// console.log($scope.orders); 
