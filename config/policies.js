@@ -48,28 +48,27 @@ module.exports.policies = {
 		// before letting any users feed our rabbits
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
-  // ProductController: {
-  //   createProduct: ['isLoggedIn', 'isSupplier'], 
-  //   updateProduct : ['isLoggedIn', 'isSupplier'], 
-  //   deleteProduct : ['isLoggedIn', 'isSupplier'], 
-  //   getProductOne : ['isLoggedIn', 'isSupplier']
-  //   getAllProducts: ['isLoggedIn', 'isSupplier', 'isAdmin',]
-  // }, 
+  ProductController: {
+    createProduct: ['isLoggedIn', 'isSupplier'],
+    updateProduct : ['isLoggedIn', 'isSupplier'],
+    deleteProduct : ['isLoggedIn', 'isSupplier'],
+    getProductOne : ['isLoggedIn', 'isSupplier']
+  },
 
-  // UserController: {
-  //   delete: ['isLoggedIn', 'isAdmin'],
-  //   removeProfile: ['isLoggedIn'], 
-  //   restoreProfile: ['isLoggedIn'], 
-  //   signup: ['isLoggedOut'], 
-  //   login: ['isLoggedOut']
-  // }, 
+  UserController: {
+    delete: ['isLoggedIn', 'isAdmin'],
+    removeProfile: ['isLoggedIn'],
+    restoreProfile: ['isLoggedIn'],
+    signup: ['isLoggedOut'],
+    login: ['isLoggedOut']
+  },
 
-  // PageController: {
-  //   showDashboardPage: ['isLoggedIn', 'isSupplier'], 
-  //   showAdminPage: ['isLoggedIn', 'isAdmin'], 
-  //   showProductPage: ['isLoggedIn', 'isSupplier'], 
-  //   showProfilePage: ['isLoggedIn', 'isSupplier'],
-  //   showLoginFrontPage: ['isLoggedOut']
-   
-  // }
+  PageController: {
+    showDashboardPage: ['isLoggedIn', 'isSupplier'],
+    showAdminPage: ['isLoggedIn', 'isAdmin'],
+    showProductPage: ['isLoggedIn', 'isSupplier'],
+    showProfilePage: ['isLoggedIn', 'isSupplier'],
+    showLoginFrontPage: ['isLoggedOut']
+
+  }
 };
