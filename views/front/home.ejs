@@ -1,5 +1,5 @@
 <!doctype html>
-
+<div ng-controller="ProductController">
 <div class="camera_wrap m_bottom_0">
         <div data-src="/images/iphone6.png" data-custom-thumb="images/slide_02.jpg">
           <div class="camera_caption_1 fadeFromTop t_align_c d_xs_none">
@@ -28,11 +28,11 @@
 </div>
       <!--content-->
       <div class="page_content_offset">
-        <div class="container" ng-controller="ProductController">
+        <div class="container">
           <h2 class="tt_uppercase m_bottom_20 color_dark heading1 animate_ftr">Produits ajoutés récemment</h2>
           <!--filter navigation of products-->
           <!--products-->
-          <section class="products_container clearfix m_bottom_25 m_sm_bottom_15" ng-init="getAllProducts()">
+          <section class="products_container clearfix m_bottom_25 m_sm_bottom_15">
             <!--product item-->
             <div class="product_item featured" ng-repeat="product in products | limitTo: 12">
               <figure class="r_corners photoframe shadow relative animate_ftb long">
@@ -206,3 +206,4 @@
           </div>
         </div>
       </div>
+</div>

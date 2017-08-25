@@ -71,7 +71,7 @@
 	}]);
 
 	frontApp.controller('ProductController', ['$scope', '$http', 'toaster','SweetAlert', function ($scope, $http, toaster,SweetAlert){
-			$scope.products = [];
+			$scope.products = window.SAILS_LOCAL.allProducts;
 			$scope.me = window.SAILS_LOCAL.me || {};
 			$scope.product = window.SAILS_LOCAL.product || {};
 			$scope.orders = window.SAILS_LOCAL.orders || {};
@@ -85,14 +85,10 @@
 			$scope.produits = [];
 			$scope.produit = {};
 			$scope.productToCompare = window.SAILS_LOCALS.compare;
-		    $scope.pageSize = 5;
+      $scope.pageSize = 5;
 			$scope.currentPage = 1;
 
-		 	console.log($scope.products);
-			// console.log($scope.productCategory);
-			// console.log('Le produit est :'+angular.toJson($scope.product));
-			// console.log($scope.orders);
-			// console.log($scope.cart);
+
 			console.log($scope.productToCompare);
 
 			$scope.init = function (){
@@ -131,39 +127,6 @@
 				}
 				return $scope.isEmpty;
 			}
-
-			$scope.getAllProducts = function (){
-				io.socket.get('/product/all', function whenServerResponds (data, JWR){
-				if(JWR.statusCode >=400){
-					console.log("Something wrong");
-					return;
-				}
-				console.log(data);
-				$scope.products = data;
-
-				$scope.$apply();
-
-				//Listen for event applied in product object
-				io.socket.on('product', function whenActionOccurs (event){
-					$scope.products.unshift({
-						name: event.data.name,
-						category: event.data.category,
-						price: event.data.price,
-						picture: event.data.picture,
-						morePictures: event.data.morePictures,
-						quantity: event.data.quantity,
-						comments: event.data.comments,
-						createdAt: event.data.createdAt,
-						description: event.data.description,
-						owner: event.data.owner
-					});
-					$scope.apply();
-				});
-
-			});
-		 }
-
-
 
 		 $scope.addToCart = function (product){
 		 	$http({
@@ -209,6 +172,7 @@
 				console.log(error);
 		 	})
 		 };
+
 		 $scope.ajouterDansDevis = function (product){
 		 	$scope.produit = { name: product, quantity: $scope.quantity};
 		 	$scope.produits.push($scope.produit);

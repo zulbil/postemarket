@@ -4,7 +4,7 @@
  * @description :: Server-side logic for managing pages
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
- 
+
 var Cart = require('../../cart.js');
 var Compare = require('../../compare.js');
 
@@ -25,8 +25,8 @@ module.exports = {
 				}
 				if(!user){
 					console.log(req.session);
-					sails.log.verbose('Session refers to a user who no longer exist'); 
-					return res.redirect('/'); 
+					sails.log.verbose('Session refers to a user who no longer exist');
+					return res.redirect('/');
 				}
 
 				Devis.find({to: user.fullname})
@@ -39,19 +39,19 @@ module.exports = {
 						return res.view('user/dashboard', {
 							layout: 'user/mainUserLayout',
 							me: {
-								id: user.id, 
-								username: user.username, 
+								id: user.id,
+								username: user.username,
 								fullname: user.fullname,
-								products: user.products, 
-								profilePicture: user.profilePicture, 
+								products: user.products,
+								profilePicture: user.profilePicture,
 								role: user.role
-							}, 
+							},
 							devis: devisFound
-						}); 
+						});
 					 })
-			}); 
+			});
 		}
-	}, 
+	},
 
 		showManagementDevisPage: function (req, res){
 		if(!req.session.userId){
@@ -68,8 +68,8 @@ module.exports = {
 				}
 				if(!user){
 					console.log(req.session);
-					sails.log.verbose('Session refers to a user who no longer exist'); 
-					return res.redirect('/'); 
+					sails.log.verbose('Session refers to a user who no longer exist');
+					return res.redirect('/');
 				}
 
 				Devis.find({to: user.fullname})
@@ -82,19 +82,19 @@ module.exports = {
 						return res.view('user/devis', {
 							layout: 'user/mainUserLayout',
 							me: {
-								id: user.id, 
-								username: user.username, 
+								id: user.id,
+								username: user.username,
 								fullname: user.fullname,
-								products: user.products, 
-								profilePicture: user.profilePicture, 
+								products: user.products,
+								profilePicture: user.profilePicture,
 								role: user.role
-							}, 
+							},
 							devis: devisFound
-						}); 
+						});
 					 })
-			}); 
+			});
 		}
-	}, 
+	},
 
 	showManagementCommandePage: function (req, res){
 		if(!req.session.userId){
@@ -111,8 +111,8 @@ module.exports = {
 				}
 				if(!user){
 					console.log(req.session);
-					sails.log.verbose('Session refers to a user who no longer exist'); 
-					return res.redirect('/'); 
+					sails.log.verbose('Session refers to a user who no longer exist');
+					return res.redirect('/');
 				}
 
 				Commande.find({to: user.fullname})
@@ -125,24 +125,24 @@ module.exports = {
 						return res.view('user/commandes', {
 							layout: 'user/mainUserLayout',
 							me: {
-								id: user.id, 
-								username: user.username, 
+								id: user.id,
+								username: user.username,
 								fullname: user.fullname,
-								products: user.products, 
-								profilePicture: user.profilePicture, 
+								products: user.products,
+								profilePicture: user.profilePicture,
 								role: user.role
-							}, 
+							},
 							devis: devisFound
-						}); 
+						});
 					 })
-			}); 
+			});
 		}
-	}, 
+	},
 
 	showDevisDetailPage: function (req, res){
-		var devisId = { id: req.param('id')}; 
+		var devisId = { id: req.param('id')};
 			if (!req.session.userId){
-				return res.redirect('/app/login'); 
+				return res.redirect('/app/login');
 			}
 
 		    User.findOne(req.session.userId)
@@ -153,36 +153,36 @@ module.exports = {
 		    		}
 
 		    		if (!userFound){
-		    			return res.notFound(); 
+		    			return res.notFound();
 		    		}
 
 		    		Devis.findOne(devisId)
 		    			 .exec( function (err, devisFound){
 		    			 	if (err){
-		    			 		return res.negotiate(err); 
+		    			 		return res.negotiate(err);
 		    			 	}
 
 		    			 	return res.view('user/devis-detail',{
-		    			 		layout: 'user/mainUserLayout', 
+		    			 		layout: 'user/mainUserLayout',
 		    			 		me: {
-		    			 			id: userFound.id, 
+		    			 			id: userFound.id,
 		    			 			products: userFound.products,
-		    			 			fullname: userFound.fullname, 
-		    			 			username: userFound.username, 
-		    			 			profilePicture: userFound.profilePicture, 
+		    			 			fullname: userFound.fullname,
+		    			 			username: userFound.username,
+		    			 			profilePicture: userFound.profilePicture,
 		    			 			role: userFound.role
-		    			 		}, 
+		    			 		},
 		    			 		oneDevis: devisFound
 		    			 	})
 		    			 })
 		    	})
-		
+
 	},
 
 	showCommandeDetailPage: function (req, res){
-		var devisId = { id: req.param('id')}; 
+		var devisId = { id: req.param('id')};
 			if (!req.session.userId){
-				return res.redirect('/app/login'); 
+				return res.redirect('/app/login');
 			}
 
 		    User.findOne(req.session.userId)
@@ -193,30 +193,30 @@ module.exports = {
 		    		}
 
 		    		if (!userFound){
-		    			return res.notFound(); 
+		    			return res.notFound();
 		    		}
 
 		    		Commande.findOne(devisId)
 		    			 .exec( function (err, devisFound){
 		    			 	if (err){
-		    			 		return res.negotiate(err); 
+		    			 		return res.negotiate(err);
 		    			 	}
 
 		    			 	return res.view('user/commande-detail',{
-		    			 		layout: 'user/mainUserLayout', 
+		    			 		layout: 'user/mainUserLayout',
 		    			 		me: {
-		    			 			id: userFound.id, 
+		    			 			id: userFound.id,
 		    			 			products: userFound.products,
-		    			 			fullname: userFound.fullname, 
-		    			 			username: userFound.username, 
-		    			 			profilePicture: userFound.profilePicture, 
+		    			 			fullname: userFound.fullname,
+		    			 			username: userFound.username,
+		    			 			profilePicture: userFound.profilePicture,
 		    			 			role: userFound.role
-		    			 		}, 
+		    			 		},
 		    			 		oneDevis: devisFound
 		    			 	})
 		    			 })
 		    	})
-		
+
 	},
 
 	showProductPage: function (req, res){
@@ -232,25 +232,25 @@ module.exports = {
 				}
 				if(!user){
 					console.log(req.session);
-					sails.log.verbose('Session refers to a user who no longer exist'); 
-					return res.redirect('/'); 
+					sails.log.verbose('Session refers to a user who no longer exist');
+					return res.redirect('/');
 				}
 
 				console.log(req.session);
 				return res.view('user/product', {
 					layout: 'user/mainUserLayout',
 					me: {
-						id: user.id, 
-						username: user.username, 
+						id: user.id,
+						username: user.username,
 						fullname: user.fullname,
-						products: user.products, 
-						profilePicture: user.profilePicture, 
+						products: user.products,
+						profilePicture: user.profilePicture,
 						role: user.role
 					}
-				}); 
+				});
 			});
 		}
-	}, 
+	},
 
 	showProfilePage: function (req, res){
 		if(!req.session.userId){
@@ -265,28 +265,28 @@ module.exports = {
 				}
 				if(!user){
 					console.log(req.session);
-					sails.log.verbose('Session refers to a user who no longer exist'); 
-					return res.redirect('/'); 
+					sails.log.verbose('Session refers to a user who no longer exist');
+					return res.redirect('/');
 				}
 
 				console.log(req.session);
 				return res.view('user/home', {
 					layout: 'user/mainUserLayout',
 					me: {
-						id: user.id, 
-						username: user.username, 
+						id: user.id,
+						username: user.username,
 						fullname: user.fullname,
-						profilePicture: user.profilePicture, 
-						role: user.role, 
-						tel: user.tel, 
-						address: user.address, 
-						city: user.city, 
+						profilePicture: user.profilePicture,
+						role: user.role,
+						tel: user.tel,
+						address: user.address,
+						city: user.city,
 						createdAt: user.createdAt
 					}
-				}); 
+				});
 			});
 		}
-	}, 
+	},
 
 	showAdminPage: function (req, res){
 		if(!req.session.userId){
@@ -301,83 +301,87 @@ module.exports = {
 				}
 				if(!user){
 					console.log(req.session);
-					sails.log.verbose('Session refers to a user who no longer exist'); 
-					return res.redirect('/'); 
+					sails.log.verbose('Session refers to a user who no longer exist');
+					return res.redirect('/');
 				}
 
 				console.log(req.session);
 				return res.view('user/admin/administration', {
 					layout: 'user/mainUserLayout',
 					me: {
-						id: user.id, 
-						username: user.username, 
+						id: user.id,
+						username: user.username,
 						fullname: user.fullname,
-						profilePicture: user.profilePicture, 
-						role: user.role, 
-						tel: user.tel, 
-						address: user.address, 
-						city: user.city, 
+						profilePicture: user.profilePicture,
+						role: user.role,
+						tel: user.tel,
+						address: user.address,
+						city: user.city,
 						createdAt: user.createdAt
 					}
-				}); 
+				});
 			});
 		}
-	}, 
-	
+	},
+
 	passwordReset: function (req, res){
 		return res.view('passwordRecovery/password-recovery-email', {
-			me: null, 
+			me: null,
 			passwordRecoveryToken : req.param('passwordRecoveryToken')
-		}); 
-	}, 
+		});
+	},
 
 	showHomePage: function (req, res) {
-		
 
 
-		User.find(req.session.userId).exec(function (err, user){
+
+		Product.find()
+            .populate('owner')
+            .populate('comments')
+           .exec(function (err, allProducts){
 			if(err){
 				return res.negotiate(err);
 			}
-			if(!user){
+			if(!allProducts){
 				return res.notFound();
 			}
 			return res.view('front/home', {
-				layout: './front/frontLayout', 
+				layout: './front/frontLayout',
 				me: req.session.userId?req.session.userId : null,
-				product: null, 
-				cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0}
+				product: null,
+				cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0},
+        allProducts : allProducts
 			});
 		})
-		
-	}, 
+
+	},
 
 	showLoginFrontPage: function (req, res){
 		if(!req.session.userId){
-			return res.view('front/loginFront'); 	
+			return res.view('front/loginFront');
 		}
-		return res.redirect('/'); 
-	}, 
+		return res.redirect('/');
+	},
 
 	showForgotPage: function (req, res){
 			if (!req.session.userId){
-				return res.view('front/forgot'); 
+				return res.view('front/forgot');
 			}
-			return res.redirect('/'); 	
-	}, 
+			return res.redirect('/');
+	},
 
 	showRegisterFrontPage: function (req, res){
 		if(!req.session.userId){
-			return res.view('front/registerFront'); 	
+			return res.view('front/registerFront');
 		}
-		return res.redirect('/'); 
-	}, 
+		return res.redirect('/');
+	},
 
 	showProductAppPage: function (req, res){
 		return res.view('front/products', {
 			layout: 'front/frontLayout'
 		});
-	}, 
+	},
 
 	showOneProductAppPage: function (req, res){
 
@@ -396,83 +400,83 @@ module.exports = {
 
 						Product.find({category: product.category})
 							   .exec( function (err, similarProducts){
-							   	if (err) return res.negotiate(err); 
-							   	if (!similarProducts) return res.notFound(); 
+							   	if (err) return res.negotiate(err);
+							   	if (!similarProducts) return res.notFound();
 
 								return res.view('./front/productDetail', {
 									layout: './front/frontLayout',
 									product: {
-										id: product.id, 
-										name: product.name, 
-										category: product.category, 
-										price: product.price, 
-										picture: product.picture, 
-										morePictures: product.morePictures, 
-										quantity: product.quantity,  
-										comments: product.comments, 
-										createdAt: product.createdAt, 
-										description: product.description, 
+										id: product.id,
+										name: product.name,
+										category: product.category,
+										price: product.price,
+										picture: product.picture,
+										morePictures: product.morePictures,
+										quantity: product.quantity,
+										comments: product.comments,
+										createdAt: product.createdAt,
+										description: product.description,
 										owner: product.owner
-									}, 
-									me: req.session.userId, 
+									},
+									me: req.session.userId,
 									cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0},
 									relatedProducts: similarProducts
 								});
 
 							   })
 				})
-	}, 
+	},
 
 	showCartPage: function (req, res){
 		if(!req.session.cart){
 			return res.view('./front/cart', {
-			layout: './front/frontLayout', 
-			me: req.session.userId, 
+			layout: './front/frontLayout',
+			me: req.session.userId,
 			cart: {
-				products: [], 
-				totalQty: 0, 
+				products: [],
+				totalQty: 0,
 				totalPrice: 0
 			}
 		  })
 		}
 
-		console.log(req.session.cart); 
-		
+		console.log(req.session.cart);
+
 		return res.view('./front/cart', {
-			layout: './front/frontLayout', 
-			me: req.session.userId, 
+			layout: './front/frontLayout',
+			me: req.session.userId,
 			cart: {
 				products: req.session.cart.items,
 				totalQty: req.session.cart.totalQty,
 				totalPrice: req.session.cart.totalPrice
 			}
-		}); 
+		});
 	},
 	showContactPage: function (req, res){
 		return res.view('./front/contact', {
-			layout: './front/frontLayout', 
-			product: null, 
+			layout: './front/frontLayout',
+			product: null,
 			cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0},
 			me: req.session.userId? req.session.userId: null
 		})
-	}, 
+	},
 
 	showComparePage: function (req, res){
 		return res.view('./front/compare', {
-			layout: './front/frontLayout', 
+			layout: './front/frontLayout',
 			cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0},
-			compare: req.session.compare? req.session.compare: null, 
+			compare: req.session.compare? req.session.compare: null,
 			me: req.session.userId? req.session.userId: null
 		})
-	}, 
+	},
 
 	showCheckoutPage: function (req, res){
 		if(!req.session.userId){
-			return res.redirect('/app/login'); 
+			return res.redirect('/app/login');
 		}
 
 		if(!req.session.cart){
-			return res.redirect('/app/cart'); 
+			return res.redirect('/app/cart');
 		}
 		User.findOne(req.session.userId).exec(function (err, user){
 			if(err){
@@ -482,24 +486,24 @@ module.exports = {
 				return res.notFound();
 			}
 			return res.view('front/checkout', {
-				layout: './front/frontLayout', 
+				layout: './front/frontLayout',
 				me: {
-						id: user.id, 
-						username: user.username, 
+						id: user.id,
+						username: user.username,
 						fullname: user.fullname,
-						profilePicture: user.profilePicture, 
-						role: user.role, 
-						tel: user.tel, 
-						address: user.address, 
-						city: user.city, 
-						createdAt: user.createdAt 
+						profilePicture: user.profilePicture,
+						role: user.role,
+						tel: user.tel,
+						address: user.address,
+						city: user.city,
+						createdAt: user.createdAt
 
 				},
-				product: null, 
+				product: null,
 				cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0}
 			});
 		})
-	}, 
+	},
 
 	showCategoryPage: function (req, res){
 		var criteria = { category: req.param('name')};
@@ -512,47 +516,73 @@ module.exports = {
 			}
 
 			if(!products){
-				return res.notFound(); 
+				return res.notFound();
 			}
 
 			return res.view('front/category', {
-				layout: './front/frontLayout', 
-				me: req.session.userId?req.session.userId : null,  
+				layout: './front/frontLayout',
+				me: req.session.userId?req.session.userId : null,
 				productPerCategory: products,
 				cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0}
 			});
 		})
-	}, 
+	},
 
 	showOrderPage : function (req, res){
 		if(!req.session.userId){
-			return res.redirect('/'); 
+			return res.redirect('/');
 		}
 
-		var criteria = { user : req.session.userId.id }; 
+		var criteria = { user : req.session.userId.id };
 		Order.find(criteria)
 			 .exec (function (err, orders) {
 			 	if (err){
-			 		return res.negotiate(err); 
+			 		return res.negotiate(err);
 			 	}
 
 			 	if(!orders){
-			 		return res.notFound(); 
+			 		return res.notFound();
 			 	}
 
 			 	orders.forEach( function (order){
-			 		var cart = new Cart (order.cart); 
-			 		order.items = cart.toArray(); 
+			 		var cart = new Cart (order.cart);
+			 		order.items = cart.toArray();
 			 	})
 			 	console.log(orders);
 			 	return res.view('front/orderList', {
-			 		layout: './front/frontLayout', 
-			 		me: req.session.userId, 
-			 		cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0}, 
+			 		layout: './front/frontLayout',
+			 		me: req.session.userId,
+			 		cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0},
 			 		orders: orders
-			 	}); 
+			 	});
 			 })
-	}, 
+	},
+
+  showOrderDetailPage : function (req, res){
+    if(!req.session.userId){
+      return res.redirect('/');
+    }
+
+    var criteria = { id : req.param('id')};
+    Order.findOne(criteria)
+      .exec (function (err, order) {
+        if (err){
+          return res.negotiate(err);
+        }
+
+        if(!order){
+          return res.notFound();
+        }
+
+        console.log(order);
+        return res.view('front/orderDetailPage', {
+          layout: './front/frontLayout',
+          me: req.session.userId,
+          cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0},
+          order: order
+        });
+      })
+  },
 
 	showDevisPage: function (req, res){
 		if(!req.session.userId){
@@ -560,26 +590,26 @@ module.exports = {
 		}
 
 		return res.view('front/management-devis', {
-			layout: './front/frontLayout', 
-			me: req.session.userId, 
+			layout: './front/frontLayout',
+			me: req.session.userId,
 			cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0}
 		});
-	}, 
+	},
 
 	showManufacturerPage: function (req, res){
 		return res.view('front/manufacturers', {
-			layout: './front/frontLayout', 
-			me: req.session.userId, 
+			layout: './front/frontLayout',
+			me: req.session.userId,
 			cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0}
 		});
-	}, 
+	},
 
 	showManufacturerDetailPage: function (req, res){
 		User.findOne({id: req.param('id')})
 			.populate('products')
 			.exec( function (err, supplier){
 				if(err){
-					return res.negotiate(err); 
+					return res.negotiate(err);
 				}
 
 				if(!supplier){
@@ -587,8 +617,8 @@ module.exports = {
 				}
 
 				return res.view('front/manufacturer-detail', {
-					layout: './front/frontLayout', 
-					me: req.session.userId, 
+					layout: './front/frontLayout',
+					me: req.session.userId,
 					supplier: supplier,
 					devis: req.session.devis,
 					cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0}
