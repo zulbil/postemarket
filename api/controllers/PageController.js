@@ -333,8 +333,6 @@ module.exports = {
 
 	showHomePage: function (req, res) {
 
-
-
 		Product.find()
             .populate('owner')
             .populate('comments')

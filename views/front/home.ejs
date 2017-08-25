@@ -1,4 +1,9 @@
 <!doctype html>
+<script type="text/javascript">
+  window.SAILS_LOCAL = {
+    allProducts: <%- typeof allProducts !=='undefined'?JSON.stringify(allProducts): 'null' %>
+  };
+</script>
 <div ng-controller="ProductController">
 <div class="camera_wrap m_bottom_0">
         <div data-src="/images/iphone6.png" data-custom-thumb="images/slide_02.jpg">

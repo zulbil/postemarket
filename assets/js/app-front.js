@@ -88,7 +88,7 @@
       $scope.pageSize = 5;
 			$scope.currentPage = 1;
 
-
+      console.log($scope.products);
 			console.log($scope.productToCompare);
 
 			$scope.init = function (){
