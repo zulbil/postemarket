@@ -334,8 +334,8 @@ module.exports = {
 	showHomePage: function (req, res) {
 
 		Product.find()
-            .populate('owner')
-            .populate('comments')
+           .populate('owner')
+           .populate('comments')
            .exec(function (err, allProducts){
 			if(err){
 				return res.negotiate(err);
@@ -343,6 +343,7 @@ module.exports = {
 			if(!allProducts){
 				return res.notFound();
 			}
+			console.log(allProducts);
 			return res.view('front/home', {
 				layout: './front/frontLayout',
 				me: req.session.userId?req.session.userId : null,
