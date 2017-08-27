@@ -23,7 +23,7 @@
 		$scope.me = window.SAILS_LOCAL.me;
 		$scope.cart = window.SAILS_LOCAL.cart || {};
 		console.log("size :"+$scope.cart);
-		console.log($scope.me);
+		console.log("User is "+$scope.me);
 
 		$scope.showLogin = null;
 		if($scope.me == undefined){
@@ -445,14 +445,11 @@
         		});
         }
 
-
-
-
 	}]);
 
 	frontApp.controller('customerController', ['$scope', '$http', 'toaster', function ($scope, $http, toaster){
 		console.log("Welcome to the customerController");
-		$scope.passwordRecoveryToken = window.SAILS_LOCALS.passwordRecoveryToken || '';
+		//$scope.passwordRecoveryToken = window.SAILS_LOCALS.passwordRecoveryToken;
 		$scope.login = function (){
 			var credentials = {
 				email: $scope.user.email,
@@ -491,7 +488,7 @@
 				.then( function onSuccessCallback (data){
 					 		console.log(data);
 					 		toaster.pop({type: 'success', title: 'Success',body: "Votre compte a été créé succès",showCloseButton: true});
-						 		alert("Success Insertion");
+						 		window.location.href= "/";
 					}, function onErrorCallback (error){
 						console.log(error);
 						toaster.pop({type: 'error', title: 'Oups',body: "La création de votre compe a échoué, Vérifiez votre mot de passe et votre nom utilisateur", showCloseButton: true});
@@ -501,6 +498,7 @@
 		};
 
 		$scope.forgetPassword = function () {
+
 			$http({
 				method: 'PUT',
 				url: '/user/generate-recovery-email',
@@ -517,11 +515,12 @@
 		}
 
 		$scope.resetPassword = function () {
+			var passwordRecoveryToken = window.SAILS_LOCALS.passwordRecoveryToken;
 			$http({
 				method: 'PUT',
 				url: '/user/reset-password',
 				data: {
-					passwordRecoveryToken: $scope.passwordRecoveryToken,
+					passwordRecoveryToken: passwordRecoveryToken,
 					password: $scope.user.password
 				},
 				headers: {

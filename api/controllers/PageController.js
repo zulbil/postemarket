@@ -343,7 +343,8 @@ module.exports = {
 			if(!allProducts){
 				return res.notFound();
 			}
-			console.log(allProducts);
+			
+			console.log(req.session); 
 			return res.view('front/home', {
 				layout: './front/frontLayout',
 				me: req.session.userId?req.session.userId : null,

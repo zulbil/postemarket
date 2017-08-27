@@ -34,6 +34,7 @@
             averageRating: <%- typeof averageRating !=='undefined'? JSON.stringify(averageRating) : 'null' %>,
               product: <%- typeof product !=='undefined'? JSON.stringify(product) : 'null' %>
           };
+          console.log(window.SAILS_LOCAL.me);
     </script>
     <style type="text/css">
       [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {

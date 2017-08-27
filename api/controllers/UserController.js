@@ -79,8 +79,10 @@ module.exports = {
                              }
 							return res.negotiate(err);
 						}
-						req.session.userId = userCreated.id; 
-						return res.json(userCreated);
+						
+						req.session.userId = userCreated; 
+						
+						return res.ok();
 					});
 				}
 			})
@@ -118,13 +120,9 @@ module.exports = {
 					}
 					// Store user id in a session
 					req.session.userId = userFound;
+					
 					console.log(req.session); 
-					if(req.session.oldUrl){
-						var myoldUrl = req.session.oldUrl; 
-						console.log(myoldUrl); 
-						req.session.oldUrl = null; 
-						return res.redirect(myoldUrl); 
-					} 
+
 					return res.json(userFound); 
 				}
 			})
