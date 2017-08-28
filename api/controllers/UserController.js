@@ -80,7 +80,7 @@ module.exports = {
 							return res.negotiate(err);
 						}
 						
-						req.session.userId = userCreated; 
+						//req.session.userId = userCreated; 
 						
 						return res.ok();
 					});

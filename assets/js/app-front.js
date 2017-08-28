@@ -395,7 +395,7 @@
         			   	}
         			}).then( function onSuccessCallback (data){
         				console.log(data);
-        				SweetAlert.swal("Success :-)", "You successfully bought those products", "success");
+        				SweetAlert.swal("Success :-)", "L'achat des produits a été effectué avec succès", "success");
         				window.location.href="/";
         			}, function onErrorCallback (err){
         				console.log(err);
@@ -404,16 +404,6 @@
 
         }
 
-        $http({ method: 'GET',
-        	url: 'https://openexchangerates.org/api/latest.json?app_id=23f2358c54e643378fbe29e4827c1ffa',
-        	headers: {
-        		'Content-Type': 'x-www-form-urlencoded'
-        	}}).then (function onSuccessCallback (result){
-        		$scope.currency = result.data.rates;
-        		console.log($scope.currency);
-        	}, function onErrorCallback (err){
-        		console.log(err);
-        	});
 
         $http({ method: 'GET', url: '/suppliers', headers: {'Content-Type': 'x-www-form-urlencoded'}
         	}).then (function onSuccessCallback (result){
