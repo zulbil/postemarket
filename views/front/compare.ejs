@@ -19,13 +19,13 @@
 				<div class="container">
 					<h2 class="tt_uppercase color_dark m_bottom_30">Comparaison des Produits</h2>
 					<!--compare products table-->
-					<div ng-if="productToCompare.items.length > 0">
+					<div ng-if="productToCompare.length > 0">
 						<table class="table_type_2 responsive_table type_2 full_width r_corners wraper shadow t_align_l m_bottom_30" ng-cloak>
 							<tr>
 								<!--titles for td-->
 								<th class="f_size_large d_xs_none">Image du Produit, Nom &amp; Categorie</th>
 								<td data-title="Product Image,Name &amp; Category" ng-repeat="product in productToCompare.items">
-									<img class="m_bottom_10" style="width: 110px; height: 110px;" ng-src="{{product.id.picture}}" alt=""><br>
+									<img class="m_bottom_10" style="width: 110px; height: 110px;" ng-src="{{product.item.picture}}" alt=""><br>
 									<a href="#" class="fw_medium d_inline_b f_size_ex_large color_dark m_bottom_5">{{product.item.name}}</a><br>
 									<a href="#" class="default_t_color">{{product.item.category}}</a>
 								</td>

@@ -1,43 +1,38 @@
 <!doctype html>
-<script type="text/javascript">
-  window.SAILS_LOCAL = {
-    allProducts: <%- typeof allProducts !=='undefined'?JSON.stringify(allProducts): 'null' %>
-  };
-</script>
-<div ng-controller="ProductController">
+
 <div class="camera_wrap m_bottom_0">
-        <div data-src="/images/iphone6.png" data-custom-thumb="images/slide_02.jpg">
-          <div class="camera_caption_1 fadeFromTop t_align_c d_xs_none">
-            <div class="f_size_large color_light tt_uppercase slider_title_3 m_bottom_5">Meet New Theme</div>
-            <hr class="slider_divider d_inline_b m_bottom_5">
-            <div class="color_light slider_title tt_uppercase t_align_c m_bottom_45 m_sm_bottom_20"><b>Attractive &amp; Elegant<br>HTML Theme</b></div>
-            <div class="color_light slider_title_2 m_bottom_45">$<b>15.00</b></div>
-            <a href="#" role="button" class="tr_all_hover button_type_4 bg_scheme_color color_light r_corners tt_uppercase">Buy Now</a>
-          </div>
-        </div>
-          <div data-src="/images/iphone8.png" data-custom-thumb="images/slide_01.jpg">
+          <div data-src="/images/camera.jpg" data-custom-thumb="/images/camera.jpg">
             <div class="camera_caption_2 fadeIn t_align_c d_xs_none">
-            <div class="f_size_large tt_uppercase slider_title_3 scheme_color">New arrivals</div>
+            <div class="f_size_large tt_uppercase slider_title_3 scheme_color">Nouveaux arrivages</div>
             <hr class="slider_divider type_2 m_bottom_5 d_inline_b">
-            <div class="color_light slider_title tt_uppercase t_align_c m_bottom_65 m_sm_bottom_20"><b><span class="scheme_color">Summer 2017</span><br><span class="color_dark">Ready-To-Wear</span></b></div>
-            <a href="#" role="button" class="d_sm_inline_b button_type_4 bg_scheme_color color_light r_corners tt_uppercase tr_all_hover">View Collection</a>
+            <div class="color_light slider_title tt_uppercase t_align_c m_bottom_65 m_sm_bottom_20"><b><span class="scheme_color">Des caméras</span><br><span class="color_dark">de bonne qualité</span></b></div>
+            <a href="/app/category/Camera,%20Photo%20&%20Video/products" role="button" class="d_sm_inline_b button_type_4 bg_scheme_color color_light r_corners tt_uppercase tr_all_hover">Voir toute la collection</a>
           </div>
           </div>
-          <div data-src="/images/macBook.jpg" data-custom-thumb="images/slide_03.jpg">
-            <div class="camera_caption_3 fadeFromTop t_align_c d_xs_none">
-            <img src="images/slider_layer_img.png" alt="" class="m_bottom_5">
-            <div class="color_light slider_title tt_uppercase t_align_c m_bottom_60 m_sm_bottom_20"><b class="color_dark">up to 70% off</b></div>
-            <a href="#" role="button" class="d_sm_inline_b button_type_4 bg_scheme_color color_light r_corners tt_uppercase tr_all_hover">Shop Now</a>
+          <div data-src="/images/ipad.jpg" data-custom-thumb="/images/ipad.jpg">
+            <div class="camera_caption_2 fadeIn t_align_c d_xs_none">
+              <div class="f_size_large tt_uppercase slider_title_3 scheme_color">Nouveaux arrivages</div>
+              <hr class="slider_divider type_2 m_bottom_5 d_inline_b">
+              <div class="color_light slider_title tt_uppercase t_align_c m_bottom_65 m_sm_bottom_20"><b><span class="scheme_color">Des ordinateurs et tablettes</span><br><span class="color_dark">de bonne qualité</span></b></div>
+              <a href="/app/category/Computers%20&%20Tablets/products" role="button" class="d_sm_inline_b button_type_4 bg_scheme_color color_light r_corners tt_uppercase tr_all_hover">Voir les nouveautés</a>
+            </div>
+          </div>
+            <div data-src="/images/iphone6.jpg" data-custom-thumb="/images/iphone6.jpg">
+            <div class="camera_caption_2 fadeIn t_align_c d_xs_none">
+            <div class="f_size_large tt_uppercase slider_title_3 scheme_color">Nouveaux arrivages</div>
+            <hr class="slider_divider type_2 m_bottom_5 d_inline_b">
+            <div class="color_light slider_title tt_uppercase t_align_c m_bottom_65 m_sm_bottom_20"><b><span class="scheme_color">Des smartphones</span><br><span class="color_dark">de bonne qualité</span></b></div>
+            <a href="/app/category/Cell%20Phones%20&%20Accessories/products" role="button" class="d_sm_inline_b button_type_4 bg_scheme_color color_light r_corners tt_uppercase tr_all_hover">Voir la collection</a>
           </div>
           </div>
 </div>
       <!--content-->
       <div class="page_content_offset">
-        <div class="container">
+        <div class="container" ng-controller="ProductController">
           <h2 class="tt_uppercase m_bottom_20 color_dark heading1 animate_ftr">Produits ajoutés récemment</h2>
           <!--filter navigation of products-->
           <!--products-->
-          <section class="products_container clearfix m_bottom_25 m_sm_bottom_15">
+          <section class="products_container clearfix m_bottom_25 m_sm_bottom_15" ng-init="getAllProducts()">
             <!--product item-->
             <div class="product_item featured" ng-repeat="product in products | limitTo: 12">
               <figure class="r_corners photoframe shadow relative animate_ftb long">
@@ -175,7 +170,7 @@
     </div>
           </section>
           <!--banners-->
-
+         
           <!--banners-->
           <div class="row clearfix">
             <div class="col-lg-4 col-md-4 col-sm-4">
@@ -211,4 +206,3 @@
           </div>
         </div>
       </div>
-</div>

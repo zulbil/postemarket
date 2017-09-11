@@ -68,6 +68,7 @@
 		console.log($scope.me);
 		$scope.isEmpty = false; 
 		$scope.text = "No description yet"; 
+		$scope.userFound = window.SAILS_LOCAL.userFound; 
 		$scope.checkIfEmpty = function (variable){
 			if(variable == ''){
 				$scope.isEmpty = true;
@@ -161,6 +162,8 @@
 		$scope.orders = []; 
 		$scope.numberOfOrder = 0;
 		$scope.somme = 0; 
+		
+		$scope.userFound = window.SAILS_LOCAL.userFound; 
 
 		$scope.sort = function (keyname){
 			$scope.sortKey = keyname; 

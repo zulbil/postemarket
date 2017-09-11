@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html ng-app="ecommerce">
+  <head>
+    <title>Ecommerce</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+    <!--STYLES-->
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        <link href="/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/global/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
+        <!-- END GLOBAL MANDATORY STYLES -->
+        <link href="/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+        <!-- END THEME GLOBAL STYLES -->
+        <!-- BEGIN THEME LAYOUT STYLES -->
+        <link href="/assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/layouts/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color" />
+        <link href="/assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
+         <link href="/assets/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="/styles/sweet-alert.css">
+        <link rel="stylesheet" type="text/css" href="/bower_components/AngularJS-Toaster/toaster.min.css">
+        <!-- END THEME LAYOUT STYLES -->
+          <link href="../assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+         <link rel="icon" type="image/ico" href="images/fav.ico">
+        <!--STYLES END-->
+        <script type="text/javascript">
+          window.SAILS_LOCAL = {
+             me: <%- typeof me !=='undefined'? JSON.stringify(me) : 'null' %>,
+            devis: <%- typeof devis !=='undefined'? JSON.stringify(devis) : 'null' %>, 
+            oneDevis: <%- typeof oneDevis !=='undefined'? JSON.stringify(oneDevis) : 'null' %>, 
+            userFound:<%- typeof userFound !=='undefined'? JSON.stringify(userFound) : 'null' %>
+          }; 
+        </script>
+        <style type="text/css">
+      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+         display: none !important;
+    }
+    </style>
+  </head>
+<body>
+<div class="page-header navbar navbar-fixed-top" ng-controller="NavBarController">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner ">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <a href="index.html">
+                        <img src="/assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+                    <div class="menu-toggler sidebar-toggler"> </div>
+                </div>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+
+                        <li class="dropdown dropdown-user">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" ng-cloak>
+                                <img alt="" class="img-circle" ng-src="{{me.profilePicture}}" />
+                                <span class="username username-hide-on-mobile"> {{me.username}} </span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="/logout">
+                                        <i class="icon-key"></i> Log Out </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END USER LOGIN DROPDOWN -->
+                        <!-- BEGIN QUICK SIDEBAR TOGGLER -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                    </ul>
+                </div>
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+            <!-- END HEADER INNER -->
+        </div>
+        
+        <div class="clearfix"> </div>
+        <div class="page-container" ng-controller="SideBarController">
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar-wrapper">
+                <div class="page-sidebar navbar-collapse collapse">
+                    <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                        <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+                        <li class="sidebar-toggler-wrapper hide">
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                            <div class="sidebar-toggler"> </div>
+                            <!-- END SIDEBAR TOGGLER BUTTON -->
+                        </li>
+
+                             <li class="nav-item ">
+                                        <a href="/adminPortal/admin" class="nav-link ">
+                                            <i class="icon-graph"></i>
+                                            <span class="title">Admin Portal</span>
+                                        </a>
+                            </li>
+                        </li>
+                    </ul>
+                    
+                </div>
+                <!-- END SIDEBAR -->
+            </div>
+<!-- section principale--><br><br>
+<div class="page-content-wrapper" ng-controller="AdminController">
+                <div class="page-content">
+                    <div class="profile">
+                        <div class="tabbable-line tabbable-full-width">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#overview" data-toggle="tab"> Overview </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="overview">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <ul class="list-unstyled profile-nav">
+                                                <li>
+                                                    <img style="height: 250px; width:200px;" ng-src="{{userFound.profilePicture}}" />  
+                                            
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                                <div class="col-md-9 profile-info">
+                                                    <div class="panel panel-info">
+                                                      <div class="panel-heading">
+                                                        <h3 class="panel-title"><i class="fa fa-info"></i> Personal Information</h3>
+                                                       </div>
+                                                       <div class="panel-body">
+                                                        <ul class="list-group">
+                                                            <li class="list-group-item"> 
+                                                                Name:     {{userFound.fullname}}
+                                                            </li>
+                                                            <li class="list-group-item"> 
+                                                                Telephone:     {{userFound.tel}}
+                                                            </li>
+                                                            <li class="list-group-item"> 
+                                                                City:  {{userFound.city}}
+                                                            </li>
+                                                            <li class="list-group-item"> 
+                                                                Address: {{userFound.address}}
+                                                            </li>
+                                                            <li class="list-group-item"> 
+                                                                Join on: {{userFound.createdAt | date }}
+                                                            </li>
+                                                
+                                                        </ul>
+                                                     </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                                <!--end tab-pane-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+  <script type="text/javascript" src="/js/dependencies/sails.io.js"></script>
+        <script type="text/javascript" src="/js/dependencies/angular.min.js"></script>
+        <script type="text/javascript">
+            console.log(angular); 
+        </script>
+        <script type="text/javascript" src="/js/angular/angular-animate.min.js"></script>
+        <script type="text/javascript" src="/bower_components/AngularJS-Toaster/toaster.min.js"></script>
+        <script type="text/javascript" src="/js/angular-ui/dist/ui-bootstrap-tpls.js"></script>
+        <script type="text/javascript" src="/js/libs/jcs-auto-validate.min.js"></script>
+        <script type="text/javascript" src="/js/libs/filepicker.js"></script>
+        <script type="text/javascript" src="/js/libs/angular_filepicker.js"></script>
+        <script type="text/javascript" src="/js/libs/dirPagination.js"></script>
+        <script type="text/javascript" src="/js/libs/SweetAlert.js"></script>
+        <script type="text/javascript" src="/js/libs/sweet-alert.min.js"></script>
+        <script type="text/javascript" src="/js/app.js"></script>
+        <script src="/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+        <script src="/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+        <script src="/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+        <script src="/assets/pages/scripts/components-select2.min.js" type="text/javascript"></script>
+         <script src="/assets/global/plugins/bootstrap-summernote/summernote.min.js" type="text/javascript"></script>
+        <script src="/assets/global/scripts/app.min.js" type="text/javascript"></script>
+</body>
+</html>

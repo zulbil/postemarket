@@ -118,7 +118,7 @@ module.exports = {
 					if(userFound.banned){
 						return res.forbidden("'Your account has been banned completly because you didn't respect the use term of our site"); 
 					}
-					// Store user id in a session
+					
 					req.session.userId = userFound;
 					
 					console.log(req.session); 

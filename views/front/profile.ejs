@@ -1,0 +1,184 @@
+<!doctype html>
+	<div ng-controller="ProductController" ng-cloak>
+			<section class="breadcrumbs">
+				<div class="container">
+					<ul class="horizontal_list clearfix bc_list f_size_medium">
+						<li class="m_right_10 current"><a href="#" class="default_t_color">Home<i class="fa fa-angle-right d_inline_middle m_left_10"></i></a></li>
+						<li class="m_right_10 current"><a href="#" class="default_t_color">Fournisseur<i class="fa fa-angle-right d_inline_middle m_left_10"></i></a></li>
+						<li><a href="#" class="default_t_color">{{supplier.fullname}}</a></li>
+					</ul>
+				</div>
+			</section>
+
+			<div class="page_content_offset">
+				<div class="container">
+					<div class="row clearfix">
+						
+						<section class="col-lg-9 col-md-9 col-sm-9 m_xs_bottom_30">
+							<h2 class="tt_uppercase color_dark m_bottom_30">{{supplier.fullname}}</h2>
+							<div class="bg_light_color_3 r_corners shadow manufacturers">
+								<img class="f_left m_right_20 m_sm_bottom_5" style="height: 150px; width: 150px;" src="{{me.profilePicture}}" alt="">
+								<p class="m_bottom_10">Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor sit amet, consecvtetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat.</p>
+								<p class="m_bottom_10">Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque. Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse sollicitudin velit sed leo. Ut pharetra augue nec augue. </p><br>
+								<div class="clearfix">
+									<ul class="horizontal_list d_inline_b l_width_divider">
+										<li class="m_right_15"><button class="tr_delay_hover r_corners button_type_14 bg_color_green color_light" ng-click="makeDevis()">Demande de devis</button></li>
+										<li class="m_right_15"><button class="tr_delay_hover r_corners button_type_14 bg_color_green color_light" ng-click="commander()">Envoyer un bon de commande</button></li>
+										<li class="m_right_15"><button class="tr_delay_hover r_corners button_type_14 bg_color_green color_light">Envoyer un message</button></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+					</div><br><br>
+					<div class="row clearfix" ng-show="showDevis">
+						<div class="col-lg-9 col-sm-9 col-md-9 m_bottom_40">
+							<h2 class="tt_uppercase color_dark m_bottom_25">Créer votre devis</h2>
+							<!--accordion-->
+							<div class="accordion">
+								<!--accordion item-->
+								<div class="accordion_item r_corners shadow wrapper m_bottom_5">
+									<h3 class="color_light active a_title relative tr_all_hover">
+										Choisissez les produits à ajouter
+										<span class="minus_icon tr_all_hover">-</span>
+										<span class="plus_icon tr_all_hover">+</span>
+									</h3>
+									<div class="bg_light_color_3 a_content">
+										<!-- <ul class="vertical_list_type_4 d_inline_b">
+											<li ng-repeat="product in supplier.products">
+											{{product.name}} <i class="fa fa-plus-circle" ng-click="ajouterDansDevis(product)"></i></li>
+										</ul> -->
+										<form  name="devisForm" ng-submit="ajouterDansDevis(product)">
+											<ul>
+												<li class="m_bottom_15">
+													<label class="d_inline_b m_bottom_5 required">Produits à choisir</label>
+														<select ng-model="product">
+															<option ng-repeat="produit in supplier.products" value="{{produit.name}}">{{produit.name}}</option>
+														</select>
+												</li>
+												<li>
+													<label class="d_inline_b m_bottom_5 required">Quantité</label>
+													<input class="input" type="number" ng-model="quantity" name="">
+												</li>
+												<br>
+												<li>
+													
+												</li>
+											</ul>
+											<button type="submit" class="tr_delay_hover r_corners button_type_14 color_dark bg_light_color_2">Ajouter dans votre devis</button>
+										</form>
+									</div>
+								</div>
+								<!--accordion item-->
+								<div class="accordion_item r_corners shadow wrapper m_bottom_5">
+									<h3 class="bg_light_color_1 color_dark a_title relative tr_all_hover">
+										Liste des produits ajoutés dans votre devis
+										<span class="minus_icon tr_all_hover">-</span>
+										<span class="plus_icon tr_all_hover">+</span>
+									</h3>
+									<div class="bg_light_color_3 a_content"><br>
+										<div class="table_sm_wrap r_corners wrapper shadow bg_light_color_1 m_bottom_30">
+								<table class="table_type_8 full_width t_align_l">
+									<tr class="f_size_large">
+										<th>Produit</th>
+										<th>Quantité</th>
+									</tr>
+									<tr ng-repeat="produit in produits">
+										<td>{{produit.name}}</td>
+										<td>{{produit.quantity}}</td>
+									</tr>
+								</table>
+							</div>
+									</div>
+								</div>
+								<!--accordion item-->
+								<div class="accordion_item r_corners shadow wrapper m_bottom_5">
+									<h3 class="bg_light_color_1 color_dark a_title relative tr_all_hover">
+										Confirmer
+										<span class="minus_icon tr_all_hover">-</span>
+										<span class="plus_icon tr_all_hover">+</span>
+									</h3>
+									<div class="bg_light_color_3 a_content">
+										<button class="tr_delay_hover r_corners button_type_14 bg_scheme_color color_light" ng-click="envoyerDevis()">Envoyer le devis</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row clearfix" ng-show="showBon">
+						<div class="col-lg-9 col-sm-9 col-md-9 m_bottom_40">
+							<h2 class="tt_uppercase color_dark m_bottom_25">Créer votre Bon de Commande</h2>
+							<!--accordion-->
+							<div class="accordion">
+								<!--accordion item-->
+								<div class="accordion_item r_corners shadow wrapper m_bottom_5">
+									<h3 class="color_light active a_title relative tr_all_hover">
+										Choisissez les produits à ajouter
+										<span class="minus_icon tr_all_hover">-</span>
+										<span class="plus_icon tr_all_hover">+</span>
+									</h3>
+									<div class="bg_light_color_3 a_content">
+										<!-- <ul class="vertical_list_type_4 d_inline_b">
+											<li ng-repeat="product in supplier.products">
+											{{product.name}} <i class="fa fa-plus-circle" ng-click="ajouterDansDevis(product)"></i></li>
+										</ul> -->
+										<form  name="commadeForm" ng-submit="ajouterDansCommande(product)">
+											<ul>
+												<li class="m_bottom_15">
+													<label class="d_inline_b m_bottom_5 required">Produits à choisir</label>
+														<select ng-model="product">
+															<option ng-repeat="produit in supplier.products" value="{{produit.name}}">{{produit.name}}</option>
+														</select>
+												</li>
+												<li>
+													<label class="d_inline_b m_bottom_5 required">Quantité</label>
+													<input class="input" type="number" ng-model="quantity" name="">
+												</li>
+												<br>
+												<li>
+													
+												</li>
+											</ul>
+											<button type="submit" class="tr_delay_hover r_corners button_type_14 color_dark bg_light_color_2">Ajouter dans votre Bon de Commande</button>
+										</form>
+									</div>
+								</div>
+								<!--accordion item-->
+								<div class="accordion_item r_corners shadow wrapper m_bottom_5">
+									<h3 class="bg_light_color_1 color_dark a_title relative tr_all_hover">
+										Liste des produits ajoutés dans votre bon de Commande
+										<span class="minus_icon tr_all_hover">-</span>
+										<span class="plus_icon tr_all_hover">+</span>
+									</h3>
+									<div class="bg_light_color_3 a_content"><br>
+										<div class="table_sm_wrap r_corners wrapper shadow bg_light_color_1 m_bottom_30">
+								<table class="table_type_8 full_width t_align_l">
+									<tr class="f_size_large">
+										<th>Produit</th>
+										<th>Quantité</th>
+									</tr>
+									<tr ng-repeat="produit in produits">
+										<td>{{produit.name}}</td>
+										<td>{{produit.quantity}}</td>
+									</tr>
+								</table>
+							</div>
+									</div>
+								</div>
+								<!--accordion item-->
+								<div class="accordion_item r_corners shadow wrapper m_bottom_5">
+									<h3 class="bg_light_color_1 color_dark a_title relative tr_all_hover">
+										Confirmer
+										<span class="minus_icon tr_all_hover">-</span>
+										<span class="plus_icon tr_all_hover">+</span>
+									</h3>
+									<div class="bg_light_color_3 a_content">
+										<button class="tr_delay_hover r_corners button_type_14 bg_scheme_color color_light" ng-click="envoyerCommande()">Envoyer le bon de Commande</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+			</div>
+		</div>
+	</div>

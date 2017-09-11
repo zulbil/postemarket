@@ -17,7 +17,7 @@
                   </li>
                 </ul>
             </div>
-            <div class="tab-content">
+            <div class="tab-content" ng-cloak>
                 <div class="tab-pane active" id="overview"><br><br>
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -133,7 +133,7 @@
                                             <td>
                                                 <button class="btn btn-circle purple btn-outline" ng-click="editProduct(user)"><i class="fa fa-pencil"></i></button>
                                                 <button class="btn btn-circle red btn-outline" ng-click="removeProduct(user)"><i class="fa fa-trash"></i></button>
-                                                <button class="btn btn-circle dark btn-outline" ng-click="see(user)"><i class="fa fa-eye"></i></button>
+                                                <a class="btn btn-circle dark btn-outline" href="/admin/user/profile/{{user.id}}"><i class="fa fa-eye"></i></a>
                                             </td>
                                         <tr>
                                     </tbody>

@@ -9,7 +9,7 @@
         <meta content="" name="author" />
     <!--STYLES-->
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito|Open+Sans" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
         <link href="/assets/global/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -24,7 +24,7 @@
         <link href="/assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
          <link href="/assets/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="/styles/sweet-alert.css">
-        <link rel="stylesheet" type="text/css" href="/js/AngularJS-Toaster/toaster.min.css">
+        <link rel="stylesheet" type="text/css" href="/bower_components/AngularJS-Toaster/toaster.min.css">
         <!-- END THEME LAYOUT STYLES -->
           <link href="../assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -33,9 +33,9 @@
         <script type="text/javascript">
           window.SAILS_LOCAL = {
              me: <%- typeof me !=='undefined'? JSON.stringify(me) : 'null' %>,
-            devis: <%- typeof devis !=='undefined'? JSON.stringify(devis) : 'null' %>,
+            devis: <%- typeof devis !=='undefined'? JSON.stringify(devis) : 'null' %>, 
             oneDevis: <%- typeof oneDevis !=='undefined'? JSON.stringify(oneDevis) : 'null' %>
-          };
+          }; 
         </script>
         <style type="text/css">
       [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -50,22 +50,22 @@
 
         <%- partial('./partials/navbar.ejs') %>
         <%- partial('./partials/sidebar.ejs') %>
-        <%- body %>
-        <%- partial('./partials/footer.ejs') %>
+        <%- body %> 
+        <%- partial('./partials/footer.ejs') %>       
+  
+    
 
 
-
-
-
+   
     <!--SCRIPTS-->
 
         <script type="text/javascript" src="/js/dependencies/sails.io.js"></script>
         <script type="text/javascript" src="/js/dependencies/angular.min.js"></script>
         <script type="text/javascript">
-            console.log(angular);
+            console.log(angular); 
         </script>
         <script type="text/javascript" src="/js/angular/angular-animate.min.js"></script>
-        <script type="text/javascript" src="/js/AngularJS-Toaster/toaster.min.js"></script>
+        <script type="text/javascript" src="/bower_components/AngularJS-Toaster/toaster.min.js"></script>
         <script type="text/javascript" src="/js/angular-ui/dist/ui-bootstrap-tpls.js"></script>
         <script type="text/javascript" src="/js/libs/jcs-auto-validate.min.js"></script>
         <script type="text/javascript" src="/js/libs/filepicker.js"></script>

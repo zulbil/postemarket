@@ -16,10 +16,9 @@
     <link rel="stylesheet" type="text/css" media="all" href="/css/style.css">
     <!--font include-->
     <link href="/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/js/AngularJS-Toaster/toaster.min.css">
+    <link rel="stylesheet" type="text/css" href="/bower_components/AngularJS-Toaster/toaster.min.css">
     <script type="text/javascript">
       window.SAILS_LOCALS = {} || null; 
-      window.SAILS_LOCALS.passwordRecoveryToken = <%- typeof passwordRecoveryToken !== 'undefined' ? JSON.stringify(passwordRecoveryToken): null  %>
     </script>
   </head>
   <body ng-controller="customerController">
@@ -41,18 +40,18 @@
               <div class="panel panel-default">
                 <div class="panel-body">
                     <h2 class="text-center">Connectez-vous</h2><br>
-            <form>
+            <form ng-submit="login(loginForm.$valid)" novalidate="novalidate" name="loginForm">
               <ul>
                 <li class="m_bottom_15">
-                  <label for="username" class="m_bottom_5 d_inline_b">Nom Utilisateur ou Mail</label><br>
-                  <input type="text"  id="username" ng-model="user.email" class="r_corners full_width">
+                  <label for="email" class="m_bottom_5 d_inline_b">Adresse Mail</label><br>
+                  <input type="text" name="email" id="username" ng-model="user.email" class="r_corners full_width" required="required">
                 </li>
                 <li class="m_bottom_25">
                   <label for="password" class="m_bottom_5 d_inline_b">Mot de Passe</label><br>
-                  <input type="password" ng-model="user.password" id="password" class="r_corners full_width">
+                  <input type="password" name="password" ng-model="user.password" id="password" class="r_corners full_width" required="required">
                 </li>
                 <li class="clearfix m_bottom_30">
-                  <button class="button_type_4 tr_all_hover r_corners f_left bg_scheme_color color_light f_mxs_none m_mxs_bottom_15" ng-click="login()">Se Connecter</button>
+                  <button class="button_type_4 tr_all_hover r_corners f_left bg_scheme_color color_light f_mxs_none m_mxs_bottom_15" type="submit">Se Connecter</button>
                   <div class="f_right f_size_medium f_mxs_none">
                     <a href="/app/forgot" class="color_dark">Mot de passe oublié?</a><br>
                   </div>
@@ -86,10 +85,10 @@
         <script type="text/javascript" src="/js/angular/angular-animate.min.js"></script>
          <script type="text/javascript" src="/js/angular-ui/dist/ui-bootstrap-tpls.js"></script>
          <script type="text/javascript" src="/js/libs/dirPagination.js"></script>
-        <script type="text/javascript" src="/js/AngularJS-Toaster/toaster.min.js"></script>
+        <script type="text/javascript" src="/bower_components/AngularJS-Toaster/toaster.min.js"></script>
         <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-        <script type="text/javascript" src="/js/stripe-angular/stripe-angular.js"></script>
-        <script type="text/javascript" src="/js/angular-payments/lib/angular-payments.js"></script>
+        <script type="text/javascript" src="/bower_components/stripe-angular/stripe-angular.js"></script>
+        <script type="text/javascript" src="/bower_components/angular-payments/lib/angular-payments.js"></script>
         <script type="text/javascript" src="/js/app-front.js"></script>
         <script type="text/javascript" src="/js/libs/SweetAlert.js"></script>
         <script type="text/javascript" src="/js/libs/sweet-alert.min.js"></script>

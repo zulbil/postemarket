@@ -16,10 +16,7 @@
     <link rel="stylesheet" type="text/css" media="all" href="/css/style.css">
     <!--font include-->
     <link href="/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/js/AngularJS-Toaster/toaster.min.css">
-    <script type="text/javascript">
-      window.SAILS_LOCALS.passwordRecoveryToken = {} || null; 
-    </script>
+    <link rel="stylesheet" type="text/css" href="/bower_components/AngularJS-Toaster/toaster.min.css">
   </head>
   <body ng-controller="customerController">
     <toaster-container toaster-options="{'time-out': 6000}"></toaster-container>
@@ -31,7 +28,8 @@
           <div class="row">
             <div class="text-center">
                <img src="/images/logoposte.png" alt=""><br><br>
-            </div>    
+            </div>
+             
           </div>
           <div class="row clearfix">
 
@@ -39,15 +37,15 @@
               <div class="panel panel-default">
                 <div class="panel-body">
                   <h2 class="text-center">Nouveau Compte</h2><br><br>
-                  <form>
+                  <form name="registerForm" novalidate="novalidate" ng-submit="signup(registerForm.$valid)">
                     <ul>
                       <li class="m_bottom_15">
                         <label for="username" class="m_bottom_5 d_inline_b">Votre Nom complet</label><br>
-                        <input type="text" id="username" class="r_corners full_width" ng-model="user.fullname">
+                        <input type="text" name="fullname" id="username" class="r_corners full_width" ng-model="user.fullname" required="required">
                       </li>
                       <li class="m_bottom_15">
                         <label for="username" class="m_bottom_5 d_inline_b">Votre Nom utilisateur</label><br>
-                        <input type="text" id="username" class="r_corners full_width" ng-model="user.username">
+                        <input type="text" name="" id="username" class="r_corners full_width" ng-model="user.username" required="required">
                       </li>
                       <li class="m_bottom_15">
                         <label for="username" class="m_bottom_5 d_inline_b">S'enregistrer comme</label><br>
@@ -58,14 +56,14 @@
                       </li>
                       <li class="m_bottom_15">
                         <label for="username" class="m_bottom_5 d_inline_b">Votre adresse Email</label><br>
-                        <input type="text" id="email" class="r_corners full_width" ng-model="user.email">
+                        <input type="text" name="email" class="r_corners full_width" ng-model="user.email" required="required">
                       </li>
                       <li class="m_bottom_25">
                         <label for="password" class="m_bottom_5 d_inline_b">Mot de Passe</label><br>
-                        <input type="password" id="password" class="r_corners full_width" ng-model="user.password">
+                        <input type="password" name="" id="password" class="r_corners full_width" ng-model="user.password" required="required">
                       </li>
                       <li class="clearfix m_bottom_30">
-                        <button class="button_type_4 tr_all_hover r_corners f_left bg_scheme_color color_light f_mxs_none m_mxs_bottom_15" ng-click="signup()">S'enregistrer</button>
+                        <button class="button_type_4 tr_all_hover r_corners f_left bg_scheme_color color_light f_mxs_none m_mxs_bottom_15">S'enregistrer</button>
                       </li>
                     </ul>
                   </form>
@@ -95,10 +93,10 @@
         <script type="text/javascript" src="/js/angular/angular-animate.min.js"></script>
          <script type="text/javascript" src="/js/angular-ui/dist/ui-bootstrap-tpls.js"></script>
          <script type="text/javascript" src="/js/libs/dirPagination.js"></script>
-        <script type="text/javascript" src="/js/AngularJS-Toaster/toaster.min.js"></script>
+        <script type="text/javascript" src="/bower_components/AngularJS-Toaster/toaster.min.js"></script>
         <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-        <script type="text/javascript" src="/js/stripe-angular/stripe-angular.js"></script>
-        <script type="text/javascript" src="/js/angular-payments/lib/angular-payments.js"></script>
+        <script type="text/javascript" src="/bower_components/stripe-angular/stripe-angular.js"></script>
+        <script type="text/javascript" src="/bower_components/angular-payments/lib/angular-payments.js"></script>
         <script type="text/javascript" src="/js/app-front.js"></script>
         <script type="text/javascript" src="/js/libs/SweetAlert.js"></script>
         <script type="text/javascript" src="/js/libs/sweet-alert.min.js"></script>
