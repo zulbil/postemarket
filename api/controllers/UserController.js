@@ -185,7 +185,7 @@ module.exports = {
 			return res.badRequest("Id parameter is required"); 
 		}
 
-		User.destroy(req.param('id')).exec(function (err, userFound){
+		User.destroy({id:req.param('id')}).exec(function (err, userFound){
 			if (err) return res.negotiate(err); 
 			if(userFound.length === 0){
 				return res.notFound(); 

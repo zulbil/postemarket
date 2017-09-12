@@ -324,6 +324,27 @@ module.exports = {
 		}
 	},
 
+	showUserProfile: function (req, res){
+		var criteria = {id: req.param('id')}; 
+		 var search = {id: req.session.userId.id};  
+		User.findOne(search).exec(function (err, user){
+			if(err){
+				return res.negotiate(err);
+			}
+			if(!user){
+				return res.notFound();
+			}
+			
+			User.findOne(criteria).exec(function (err, userFound){
+					if (err) { return res.negotiate(err); }
+					return res.view('user/admin/userProfile', {
+					me:user,
+					userFound: userFound
+				});
+			})
+		})
+	},
+
 	passwordReset: function (req, res){
 		return res.view('passwordRecovery/password-recovery-email', {
 			me: null,

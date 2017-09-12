@@ -68,6 +68,7 @@ module.exports.routes = {
 
   // Server render HTML views
   'GET /admin/adminPortal': 'PageController.showAdminPage',
+  'GET /admin/user/profile/:id':'PageController.showUserProfile',
   'GET /profile': 'PageController.showProfilePage',
   'GET /back/dashboard': 'PageController.showDashboardPage',
   'GET /back/devis': 'PageController.showManagementDevisPage',

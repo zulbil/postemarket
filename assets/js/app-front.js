@@ -82,7 +82,7 @@
 			$scope.showDevis = false; 
 			$scope.showBon = false; 
 			$scope.devis = window.SAILS_LOCAL.devis;
-			$scope.produits = []; 
+			$scope.produits = window.SAILS_LOCAL.allProducts; 
 			$scope.produit = {};
 			$scope.productToCompare = window.SAILS_LOCALS.compare; 
 		    $scope.pageSize = 5; 
