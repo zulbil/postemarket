@@ -63,6 +63,15 @@ module.exports.policies = {
     login: ['isLoggedOut']
   },
 
+  OrderController: {
+    checkout: ['isLoggedIn', 'isCustomer'], 
+    getAllOrders: ['isLoggedIn', 'isCustomer']
+  }, 
+
+  CommentController: {
+    createComment: ['isLoggedIn', 'isCustomer']
+  }, 
+
   PageController: {
     showDashboardPage: ['isLoggedIn', 'isSupplier'],
     showAdminPage: ['isLoggedIn', 'isAdmin'],

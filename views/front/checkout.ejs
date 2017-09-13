@@ -66,7 +66,7 @@
 													<label  class="d_inline_b m_bottom_5 required">Credit Card Number</label>
 													<input type="text" name="card" ng-model="number" class="r_corners full_width" payments-format="card" payments-validate="card" payments-type-model="type">
 													<div ng-if="checkoutForm.card.$invalid">
-													    <p style="color: red;">Error: invalid card number!</p>
+													    <p style="color: red;">Erreur: Cette carte est invalide!</p>
 													</div>
 												</li>
 												<li class="m_bottom_15">
@@ -99,7 +99,7 @@
 												</li>
 												<br>
 												<li>
-													
+													<input type="hidden" name="_csrf" value="<%= _csrf %>">
 												</li>
 											</ul>
 											<button type="submit" class="button_type_6 bg_scheme_color f_size_large r_corners tr_all_hover color_light m_bottom_20">Acheter</button>
