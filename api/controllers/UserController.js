@@ -79,9 +79,7 @@ module.exports = {
                              }
 							return res.negotiate(err);
 						}
-						
-						//req.session.userId = userCreated; 
-						
+						req.session.userId = userCreated; 
 						return res.ok();
 					});
 				}
@@ -174,13 +172,15 @@ module.exports = {
 				sails.log.verbose("User no longer exist");
 				return res.redirect('/');
 			}
-			req.session.userId = null; 
+			req.session.userId = null;
+			req.session.cart = null; 
+			req.session.compare = null;  
 			console.log(req.session); 
 			return res.redirect('/'); 
-		});
+		})
 	}, 
 
-	delete: function (req, res){
+delete: function (req, res){
 		if(!req.param && req.param('id')){
 			return res.badRequest("Id parameter is required"); 
 		}
