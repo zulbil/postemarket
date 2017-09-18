@@ -332,13 +332,13 @@
 		                  <label for="password" class="m_bottom_5 d_inline_b">Mot de Passe</label><br>
 		                  <input type="password" name="password" ng-model="user.password" id="password" class="r_corners full_width" required="required">
 		                </li>
+		                <input type="hidden" name="_csrf" value="<%= _csrf %>">
 		                <li class="clearfix m_bottom_30">
 		                  <button type="submit" class="button_type_4 tr_all_hover r_corners f_left bg_scheme_color color_light f_mxs_none m_mxs_bottom_15">Se Connecter</button>
 		                  <div class="f_right f_size_medium f_mxs_none">
 		                    <a href="/app/forgot" class="color_dark">Mot de passe oublié?</a><br>
 		                  </div>
 		                </li>
-		                <input type="hidden" name="_csrf" value="<%= _csrf %>">
 		              </ul>
 		            </form>
 				<footer class="bg_light_color_1 t_mxs_align_c">

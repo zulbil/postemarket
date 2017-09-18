@@ -42,9 +42,9 @@
 		$scope.me = window.SAILS_LOCAL.me; 
 		console.log($scope.me); 
 		$scope.showAdmin = null; 
-		// if($scope.me.role == 'admin'){
-		// 	$scope.showAdmin = true; 
-		// }
+		if($scope.me.role == 'admin'){
+			$scope.showAdmin = true; 
+		}
 
 	}]); 
 
@@ -164,39 +164,6 @@
 		$scope.somme = 0; 
 		
 		$scope.userFound = window.SAILS_LOCAL.userFound; 
-
-		$scope.remove = function (user){
-			var index = $scope.users.indexOf(user); 
-			$http.delete('/user/delete/'+user.id)
-			     .then( function onSuccessCallback(){
-			     	$scope.users.splice(index, 1); 
-			     }, 
-			     function errorCallback(error){
-			     	console.log(error);
-			     });	
-		}
-
-		$scope.removeUser = function(user){
-        	SweetAlert.swal({
-            title: "Are you sure?", //Bold text
-            text: "Your will not be able to recover this file!", //light text
-            type: "warning", //type -- adds appropiriate icon
-            showCancelButton: true, // displays cancel btton
-            confirmButtonColor: "#DD6B55",
-            cancelButtonText: "Cancel",
-            confirmButtonText: "Yes, delete it!",
-            closeOnConfirm: false, //do not close popup after click on confirm, usefull when you want to display a subsequent popup
-            closeOnCancel: false
-       	 }, 
-	        function(isConfirm){ //Function that triggers on user action.
-	            if(isConfirm){
-	            	$scope.remove(user); 
-	                SweetAlert.swal("Deleted!", "Your file has been deleted.", "success");
-	            } else {
-	                SweetAlert.swal("Cancelled", "Your file is safe :)", "error");
-	            }
-	        });
-        }
 
 		$scope.sort = function (keyname){
 			$scope.sortKey = keyname; 

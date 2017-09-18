@@ -32,9 +32,9 @@
           <h2 class="tt_uppercase m_bottom_20 color_dark heading1 animate_ftr">Produits ajoutés récemment</h2>
           <!--filter navigation of products-->
           <!--products-->
-          <section class="products_container clearfix m_bottom_25 m_sm_bottom_15">
+          <section class="products_container clearfix m_bottom_25 m_sm_bottom_15" ng-init="getAllProducts()">
             <!--product item-->
-            <div class="product_item featured" ng-repeat="product in produits | limitTo: 12">
+            <div class="product_item featured" ng-repeat="product in products | limitTo: 12">
               <figure class="r_corners photoframe shadow relative animate_ftb long">
                 <!--product preview-->
                 <a href="/app/product/{{product.id}}" class="d_block relative pp_wrap">

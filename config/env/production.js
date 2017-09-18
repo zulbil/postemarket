@@ -12,18 +12,37 @@
 
 module.exports = {
 
+  /***************************************************************************
+   * Set the default database connection for models in the production        *
+   * environment (see config/connections.js and config/models.js )           *
+   ***************************************************************************/
+  hookTimeout: 40000, 
   models: {
-    connection: 'MongodbServer'
-  },
+    connection: 'MongodbServerLive'
+  }, 
 
   session: {
-  	adapter: 'redis', 
-  	url: 'redis://redistogo:06eaeeaae7055cd4d693d23d2f2cdf11@angelfish.redistogo.com:11228/'
+    adapter: 'redis', 
+     url: 'redis://redistogo:df4141efe0d98e2cd7f4412d0a458b8b@angelfish.redistogo.com:11067'
   }, 
 
   sockets: {
     adapter: 'socket.io-redis', 
-     url: 'redis://redistogo:06eaeeaae7055cd4d693d23d2f2cdf11@angelfish.redistogo.com:11228/'
+     url: 'redis://redistogo:df4141efe0d98e2cd7f4412d0a458b8b@angelfish.redistogo.com:11067'
   }
+
+  /***************************************************************************
+   * Set the port in the production environment to 80                        *
+   ***************************************************************************/
+
+  // port: 80,
+
+  /***************************************************************************
+   * Set the log level in production environment to "silent"                 *
+   ***************************************************************************/
+
+  // log: {
+  //   level: "silent"
+  // }
 
 };

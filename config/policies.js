@@ -64,8 +64,7 @@ module.exports.policies = {
   },
 
   OrderController: {
-    checkout: ['isLoggedIn', 'isCustomer'], 
-    getAllOrders: ['isLoggedIn', 'isCustomer']
+    checkout: ['isLoggedIn', 'isCustomer']
   }, 
 
   CommentController: {

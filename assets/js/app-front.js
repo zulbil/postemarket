@@ -82,19 +82,19 @@
 			$scope.showDevis = false; 
 			$scope.showBon = false; 
 			$scope.devis = window.SAILS_LOCAL.devis;
-			$scope.produits = window.SAILS_LOCAL.allProducts; 
+			$scope.produits = []; 
 			$scope.produit = {};
-			$scope.productToCompare = window.SAILS_LOCALS.compare; 
+			$scope.productToCompare = window.SAILS_LOCAL.compare; 
 		    $scope.pageSize = 5; 
 			$scope.currentPage = 1; 
-			
+			$scope.order = window.SAILS_LOCAL.order || {}; 
 		 	// console.log($scope.product); 
 			// console.log($scope.productCategory); 
 			// console.log('Le produit est :'+angular.toJson($scope.product)); 
 			// console.log($scope.orders); 
 			// console.log($scope.cart); 
-			console.log($scope.productToCompare);
-
+			console.log("Les produits à comparer "+angular.toJson($scope.productToCompare));
+			console.log("Panier :"+angular.toJson($scope.cart)); 
 			$scope.init = function (){
 				if($scope.product.length <= 0){
 					$scope.showTextArea = false; 
@@ -195,7 +195,7 @@
 					'Content-Type':'x-www-form-urlencoded'
 				}
 		 	}).then( function onSuccessCallback (data) {
-		 		console.log(data);
+		 		console.log("comparaison: " +data);
 		 		toaster.pop({
 					type: 'success', title: 'Success', 
 					body: 'Ce produit va être comparer'
@@ -414,7 +414,7 @@
 
         $scope.stripeCallback = function (code, result) {
         	if (result.error){
-        		console.log(result.error);  
+        		console.log(result.error); 
         	}
 
         	/* 
@@ -433,7 +433,7 @@
         				SweetAlert.swal("Succès :-)", "Votre paiement en ligne a été réalisé avec succès", "success");
         				window.location.href="/"; 
         			}, function onErrorCallback (err){
-        				console.log(err);
+        				toaster.pop({type: 'error', title: 'Oups',body: err.data, showCloseButton: true});	
         			})
         	}
 
@@ -532,12 +532,12 @@
 				.then( function onSuccessCallback (data){
 					 		console.log(data); 
 					 		toaster.pop({type: 'success', title: 'Success',body: "Votre compte a été créé succès",showCloseButton: true});
+					 		window.location.reload(); 
 					}, function onErrorCallback (error){
 						console.log(error); 
 						toaster.pop({type: 'error', title: 'Oups',body: "La création de votre compe a échoué, Vérifiez votre mot de passe et votre nom utilisateur", showCloseButton: true});
 						 	
-				}); 
-			window.location.href="/"; 
+				});  
 		}else {
 			toaster.pop({type: 'error', title: 'Erreur',body: "Votre formulaire est invalide. Veuillez remplir tous les champs", showCloseButton: true});
 		}

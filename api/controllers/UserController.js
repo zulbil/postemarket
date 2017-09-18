@@ -80,7 +80,7 @@ module.exports = {
 							return res.negotiate(err);
 						}
 						req.session.userId = userCreated; 
-						return res.ok();
+						return res.json(userCreated);
 					});
 				}
 			})
@@ -116,11 +116,15 @@ module.exports = {
 					if(userFound.banned){
 						return res.forbidden("'Your account has been banned completly because you didn't respect the use term of our site"); 
 					}
-					
+					// Store user id in a session
 					req.session.userId = userFound;
-					
 					console.log(req.session); 
-
+					if(req.session.oldUrl){
+						var myoldUrl = req.session.oldUrl; 
+						console.log(myoldUrl); 
+						req.session.oldUrl = null; 
+						return res.redirect(myoldUrl); 
+					} 
 					return res.json(userFound); 
 				}
 			})
@@ -172,20 +176,20 @@ module.exports = {
 				sails.log.verbose("User no longer exist");
 				return res.redirect('/');
 			}
-			req.session.userId = null;
+			req.session.userId = null; 
 			req.session.cart = null; 
-			req.session.compare = null;  
+			req.session.compare = null;
 			console.log(req.session); 
 			return res.redirect('/'); 
-		})
+		});
 	}, 
 
-delete: function (req, res){
+	delete: function (req, res){
 		if(!req.param && req.param('id')){
 			return res.badRequest("Id parameter is required"); 
 		}
 
-		User.destroy({id:req.param('id')}).exec(function (err, userFound){
+		User.destroy(req.param('id')).exec(function (err, userFound){
 			if (err) return res.negotiate(err); 
 			if(userFound.length === 0){
 				return res.notFound(); 

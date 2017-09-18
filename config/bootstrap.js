@@ -19,11 +19,9 @@ module.exports.bootstrap = function(cb) {
        	 }
        	 if(numberOfProducts > 0){
        	 	console.log("The number of product is "+numberOfProducts); 
-          return cb(); 
+       	 	return cb(); 
        	 }
     	console.log("There are no recorded products"); 
     	return cb(); 
        });
-  
-
 };

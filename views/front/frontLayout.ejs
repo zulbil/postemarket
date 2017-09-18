@@ -17,16 +17,16 @@
     <link rel="stylesheet" type="text/css" media="all" href="/css/owl.transitions.css">
     <link rel="stylesheet" type="text/css" media="all" href="/css/jquery.custom-scrollbar.css">
     <link rel="stylesheet" type="text/css" media="all" href="/css/style.css">
-    <link href="/css/mycssfile.css" rel="stylesheet" type="text/css" />
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/js/AngularJS-Toaster/toaster.min.css">
     <link rel="stylesheet" type="text/css" href="/styles/sweet-alert.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway" rel="stylesheet">
     <!-- STYLES END -->
+
     <script type="text/javascript">
           window.SAILS_LOCALS = {} || null; 
           window.SAILS_LOCAL = {
             me: <%- typeof me !=='undefined'? JSON.stringify(me) : 'null' %>,
-            allProducts: <%- typeof allProducts !=='undefined'? JSON.stringify(allProducts) : 'null' %>,
             productPerCategory: <%- typeof productPerCategory !=='undefined'? JSON.stringify(productPerCategory) : 'null' %>, 
             cart: <%- typeof cart !=='undefined'? JSON.stringify(cart) : 'null' %>, 
              supplier: <%- typeof supplier !=='undefined'? JSON.stringify(supplier) : 'null' %>,
@@ -34,8 +34,10 @@
             orders: <%- typeof orders !=='undefined'? JSON.stringify(orders) : 'null' %>, 
             averageRating: <%- typeof averageRating !=='undefined'? JSON.stringify(averageRating) : 'null' %>, 
             stars: <%- typeof stars !=='undefined'?JSON.stringify(stars): 'null' %>, 
-              product: <%- typeof product !=='undefined'? JSON.stringify(product) : 'null' %>
+              product: <%- typeof product !=='undefined'? JSON.stringify(product) : 'null' %>, 
+             compare: <%- typeof compare !=='undefined'? JSON.stringify(compare) : 'null' %>
           }; 
+          console.log("Table de comparaison: " +window.SAILS_LOCAL.compare);
     </script> 
     <style type="text/css">
       [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
