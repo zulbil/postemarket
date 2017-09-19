@@ -18,17 +18,17 @@ module.exports = {
    ***************************************************************************/
   hookTimeout: 40000, 
   models: {
-    connection: 'MongodbServerLive'
+    connection: 'MongodbServer'
   }, 
 
   session: {
     adapter: 'redis', 
-     url: 'redis://redistogo:df4141efe0d98e2cd7f4412d0a458b8b@angelfish.redistogo.com:11067'
+     url: 'redis://redistogo:06eaeeaae7055cd4d693d23d2f2cdf11@angelfish.redistogo.com:11228'
   }, 
 
   sockets: {
     adapter: 'socket.io-redis', 
-     url: 'redis://redistogo:df4141efe0d98e2cd7f4412d0a458b8b@angelfish.redistogo.com:11067'
+     url: 'redis://redistogo:06eaeeaae7055cd4d693d23d2f2cdf11@angelfish.redistogo.com:11228'
   }
 
   /***************************************************************************
