@@ -640,24 +640,30 @@ module.exports = {
 	    }
 
 	    var criteria = { id : req.param('id')};
-	    Order.findOne(criteria)
-	      .exec (function (err, order) {
-	        if (err){
-	          return res.negotiate(err);
-	        }
+	    
+	    User.findOne({id: req.session.userId.id}).exec( function (err, user){
+	    	if (err) { 
+	    		return res.negotiate(err); 
+	    	}
+		    Order.findOne(criteria)
+			      .exec (function (err, order) {
+			        if (err){
+			          return res.negotiate(err);
+			        }
 
-	        if(!order){
-	          return res.notFound();
-	        }
+			        if(!order){
+			          return res.notFound();
+			        }
 
-	        console.log(order);
-	        return res.view('front/orderDetailPage', {
-	          layout: './front/frontLayout',
-	          me: req.session.userId,
-	          cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0},
-	          order: order
-	        });
-	      })
+			        console.log(order);
+			        return res.view('front/detailOrder', {
+			          layout: './front/frontLayout',
+			          me: user,
+			          cart: req.session.cart? req.session.cart : {products: [], totalQty: 0, totalPrice: 0},
+			          order: order
+			        });
+			      })
+			    }) 
   	}, 
 
   	showCustomerProfile: function (req, res) {

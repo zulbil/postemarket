@@ -35,9 +35,10 @@
             averageRating: <%- typeof averageRating !=='undefined'? JSON.stringify(averageRating) : 'null' %>, 
             stars: <%- typeof stars !=='undefined'?JSON.stringify(stars): 'null' %>, 
               product: <%- typeof product !=='undefined'? JSON.stringify(product) : 'null' %>, 
+              order:<%- typeof order !=='undefined'? JSON.stringify(order) : 'null' %>,
              compare: <%- typeof compare !=='undefined'? JSON.stringify(compare) : 'null' %>
           }; 
-          console.log("Table de comparaison: " +window.SAILS_LOCAL.compare);
+          console.log(window.SAILS_LOCAL);
     </script> 
     <style type="text/css">
       [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {

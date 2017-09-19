@@ -426,14 +426,15 @@
         			   data: {
         			   		source: result.id, 
         			   		name: $scope.name, 
-        			   		address: $scope.address
+        			   		address: $scope.address, 
+        			   		tel: $scope.receipt_number
         			   	}
         			}).then( function onSuccessCallback (data){
         				console.log(data);
         				SweetAlert.swal("Succès :-)", "Votre paiement en ligne a été réalisé avec succès", "success");
         				window.location.href="/"; 
         			}, function onErrorCallback (err){
-        				toaster.pop({type: 'error', title: 'Oups',body: err.data, showCloseButton: true});	
+        				toaster.pop({type: 'error', title: 'Oups',body: err, showCloseButton: true});	
         			})
         	}
 
