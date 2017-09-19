@@ -60,11 +60,7 @@
 											<ul>
 												<li class="m_bottom_15">
 													<label for="d_name" class="d_inline_b m_bottom_5 required">Name</label>
-													<input type="text" ng-model="name" class="r_corners full_width" name="name" ng-pattern="[a-zA-Z ]*" required>
-													<div ng-if="checkoutForm.name.$dirty && checkoutForm.name.$invalid">
-														<p style="color: red;" ng-show="checkoutForm.name.$error.required && !checkoutForm.name.$pristine"> Ce champs est requis</p>
-														<p style="color: red;" ng-show="checkoutForm.name.$"> Ce champs est requis</p>
-													</div>
+													<input type="text" ng-model="name" class="r_corners full_width" name="name" required>
 												</li>
 												<li class="m_bottom_15">
 													<label  class="d_inline_b m_bottom_5 required">Credit Card Number</label>
@@ -87,7 +83,7 @@
 												</li>
 												<li class="m_bottom_15">
 													<label for="address_1" class="d_inline_b m_bottom_5 required">Address </label>
-													<input type="text" ng-model="address" ng-pattern="[a-zA-Z ]*" name="address" class="r_corners full_width" required>
+													<input type="text" ng-model="address" name="address" class="r_corners full_width" required>
 												</li>
 												<li class="m_bottom_15">
 													<label for="phone_1" class="d_inline_b m_bottom_5">Phone</label>
